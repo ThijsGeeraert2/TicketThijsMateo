@@ -24,4 +24,8 @@
     <ProjectReference Include="..\TicketThijsMateo.Services\TicketThijsMateo.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
+
 </Project>
