@@ -18,12 +18,10 @@ namespace TicketThijsMateo.Domains.Context
         public Club ThuisPloeg { get; set; }
 
         public int UitPloegId { get; set; }
-        public Club UitPloeg { get; set; }
 
 
         public int StadiumId { get; set; }
         public Stadium Stadium { get; set; }
-
 
     }
 }
