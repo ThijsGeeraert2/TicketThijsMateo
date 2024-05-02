@@ -13,6 +13,19 @@ namespace TicketThijsMateo.Domains.Context
 
         }
 
-        //DbSet<Ticket> Ticket {  get; set; }
+        DbSet<Ticket> Tickets {  get; set; }
+
+        DbSet<Abonnement> abonnementen { get; set; }
+
+        DbSet<Club> Clubs { get; set; }
+
+        DbSet<Soortplaats> Soortplaatsen { get; set; }
+
+        DbSet<Stadium> Stadia { get; set; }
+
+        DbSet<Wedstrijd> Wedstrijden {  get; set; }
+
+        DbSet<Zitplaats> Zitplaatsen { get; set; }
+
     }
 }
