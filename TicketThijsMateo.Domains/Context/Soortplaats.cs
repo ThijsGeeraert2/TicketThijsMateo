@@ -15,5 +15,13 @@ namespace TicketThijsMateo.Domains.Context
         public int? Capaciteit { get; set; }
         
 
+        //FK
+
+        public int StadiumId { get; set; }
+        public Stadium Stadium { get; set; }
+
+
+        public ICollection<Zitplaats> Zitplaats { get; set; }
+
     }
 }

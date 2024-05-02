@@ -10,6 +10,12 @@ namespace TicketThijsMateo.Domains.Context
     {
         public int Id { get; set; }
         public string? Naam { get; set; }
-        //public int StadiumId { get; set; }
+
+        //FK
+
+        public int StadiumId { get; set; }
+        public Stadium Stadium { get; set; }
+
+        public ICollection<Wedstrijd> Wedstrijden { get; set;}
     }
 }
