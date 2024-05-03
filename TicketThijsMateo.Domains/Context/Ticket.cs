@@ -9,10 +9,18 @@ namespace TicketThijsMateo.Domains.Context
     public class Ticket
     {
         public int Id { get; set; }
-        public DateOnly AankoopDatum { get; set; }
+        public DateTime AankoopDatum { get; set; }
 
         public bool betaald { get; set; }
         public string Voornaam { get; set; }
         public string Familienaam {  get; set; }
+
+        //FK
+        public int WedstrijdId { get; set; }
+        public Wedstrijd? Wedstrijd { get; set; }
+        //public int ZitplaatsId { get; set; }
+        public Zitplaats? Zitplaats { get; set;}
+        
+        public ICollection<Wedstrijd>? Wedstrijden { get; set; }
     }
 }
