@@ -1,9 +1,11 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p class="display-6">Op deze site kan u tickets voor wedstrijden en abonnementen voor voetbalclubs kopen</p>
+    <h1 class="display-4">@Localizer["Welcome"].Value</h1>
+    <p class="display-6">@Localizer["SubWelcome"].Value </p>
     <img src="./images/proleague.png" alt="Logo jupier league" class="img-fluid" />
 </div>
