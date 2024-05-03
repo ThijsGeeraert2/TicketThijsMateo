@@ -15,11 +15,8 @@ namespace TicketThijsMateo.Domains.Context
         public string? Adres { get; set; }
 
         //FK
-        public int ClubId { get; set; }
-        public Club Club { get; set; }
 
-        
-        public ICollection<Soortplaats> Soortplaatsen { get; set; } 
+        public ICollection<Soortplaats>? Soortplaatsen { get; set; } 
     
     }
 }

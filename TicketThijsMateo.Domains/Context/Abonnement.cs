@@ -11,5 +11,7 @@ namespace TicketThijsMateo.Domains.Context
         public int Id { get; set; }
         public string? Familienaam { get; set; }
         public string? Voornaam { get; set; }
+        public int? ZitplaatsID { get; set; }
+        public Zitplaats? Zitplaats { get; set; }
     }
 }
