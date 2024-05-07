@@ -35,5 +35,15 @@ namespace TicketThijsMateo.Domains.Context
         DbSet<Stadium> Stadia { get; set; }
         DbSet<Wedstrijd> Wedstrijden { get; set; }
         DbSet<Zitplaats> Zitplaatsen { get; set; }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer("Server = ticketsthijsmateo.database.windows.net; Initial Catalog = TicketDB24; User ID =Beheerder; Password = Hallo1234; MultipleActiveResultSets = True; Encrypt = True; TrustServerCertificate = True; ");
+            }
+        }
+
     }
+
+
 }
