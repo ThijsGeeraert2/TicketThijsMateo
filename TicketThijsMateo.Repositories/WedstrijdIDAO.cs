@@ -35,11 +35,12 @@ namespace TicketThijsMateo.Repositories
             try
             {// select * from Bieren
                 return await dbContext.Wedstrijden
+                    .Include(b => b.Stadium)
                     .ToListAsync(); // volgende Namespaces toevoegen bovenaan using System.Linq; using Microsoft.EntityFrameworkCore;	
             }
             catch (Exception ex)
             {
-                Console.WriteLine("error in DAO");
+                Console.WriteLine("error in DAO", ex);
                 throw;
 
             }
