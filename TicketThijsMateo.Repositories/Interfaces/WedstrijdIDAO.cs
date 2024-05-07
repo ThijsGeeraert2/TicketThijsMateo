@@ -8,7 +8,7 @@ namespace TicketThijsMateo.Repositories.Interfaces
 {
     public interface WedstrijdIDAO<T> where T : class
     {
-        Task<IEnumerable<T>?> GetAll();
+        Task<IEnumerable<T>?> GetAllWedstrijdenBetweenClubs(int thuisploegId, int uitploegId);
 
     }
 }

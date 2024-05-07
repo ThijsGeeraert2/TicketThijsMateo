@@ -18,20 +18,9 @@ namespace TicketThijsMateo.Repositories
             _ticketDBContext = ticketDBContext;
         }
 
-        public async Task<IEnumerable<Wedstrijd>?> GetAll()
-        {
-            try
-            {
-                return await _ticketDBContext.Wedstrijden.ToListAsync();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("error in DAO");
-                throw;
-            }
-        }
+       
 
-        public async Task<IEnumerable<Wedstrijd>?> GetWedstrijdenBetweenClubs(int thuisploegId, int uitploegId)
+        public async Task<IEnumerable<Wedstrijd>?> GetAllWedstrijdenBetweenClubs(int thuisploegId, int uitploegId)
         {
             try
             {

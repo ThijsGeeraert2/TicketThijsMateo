@@ -8,7 +8,7 @@ namespace TicketThijsMateo.Services.Interfaces
 {
     public interface WedstrijdIService<T> where T : class
     {
-        Task<IEnumerable<T>?> GetAll();
+        Task<IEnumerable<T>?> GetAllWedstrijdenBetweenClubs(int thuisPloegId, int uitPloegId);
 
     }
 }
