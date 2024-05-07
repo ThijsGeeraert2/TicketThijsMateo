@@ -10,11 +10,11 @@ using TicketThijsMateo.Services.Interfaces;
 
 namespace TicketThijsMateo.Services
 {
-    public class WedstrijdService : IService<Wedstrijd>
+    public class WedstrijdService : WedstrijdIService<Wedstrijd>
     {
-        private IDAO<Wedstrijd> _wedstrijdDAO;
+        private WedstrijdIDAO<Wedstrijd> _wedstrijdDAO;
 
-        public WedstrijdService(IDAO<Wedstrijd> service)
+        public WedstrijdService(WedstrijdIDAO<Wedstrijd> service)
         {
             _wedstrijdDAO = service;
         }

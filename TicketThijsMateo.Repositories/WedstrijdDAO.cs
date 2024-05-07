@@ -9,7 +9,7 @@ using TicketThijsMateo.Repositories.Interfaces;
 
 namespace TicketThijsMateo.Repositories
 {
-    public class WedstrijdDAO : IDAO<Wedstrijd>
+    public class WedstrijdDAO : WedstrijdIDAO<Wedstrijd>
     {
         private readonly TicketDBContext _ticketDBContext;
 

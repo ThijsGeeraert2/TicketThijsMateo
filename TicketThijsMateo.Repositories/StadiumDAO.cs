@@ -9,7 +9,7 @@ using TicketThijsMateo.Repositories.Interfaces;
 
 namespace TicketThijsMateo.Repositories
 {
-    public class StadiumDAO : IDAO<Stadium>
+    public class StadiumDAO : StadiumIDAO<Stadium>
     {
         private readonly TicketDBContext _ticketDBContext;
 

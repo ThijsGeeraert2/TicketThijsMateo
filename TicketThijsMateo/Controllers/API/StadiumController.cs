@@ -12,10 +12,10 @@ namespace TicketThijsMateo.Controllers.API
     [ApiController]
     public class StadiumController : ControllerBase
     {
-        private IService<Stadium> _stadiumService;
+        private StadiumIService<Stadium> _stadiumService;
         private readonly IMapper _mapper;
 
-        public StadiumController(IMapper mapper, IService<Stadium> service)
+        public StadiumController(IMapper mapper, StadiumIService<Stadium> service)
         {
             _stadiumService = service;
             _mapper = mapper;

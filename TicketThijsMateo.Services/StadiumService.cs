@@ -10,11 +10,11 @@ using TicketThijsMateo.Services.Interfaces;
 
 namespace TicketThijsMateo.Services
 {
-    public class StadiumService: IService<Stadium>
+    public class StadiumService: StadiumIService<Stadium>
     {
-        private IDAO<Stadium> _stadiumDAO;
+        private StadiumIDAO<Stadium> _stadiumDAO;
 
-        public StadiumService(IDAO<Stadium> service)
+        public StadiumService(StadiumIDAO<Stadium> service)
         {
             _stadiumDAO = service;
         }
