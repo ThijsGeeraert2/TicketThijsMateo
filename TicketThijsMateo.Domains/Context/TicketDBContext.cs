@@ -33,7 +33,7 @@ namespace TicketThijsMateo.Domains.Context
         public DbSet<Club> Clubs { get; set; }
         DbSet<Soortplaats> Soortplaatsen { get; set; }
         DbSet<Stadium> Stadia { get; set; }
-        DbSet<Wedstrijd> Wedstrijden { get; set; }
+        public DbSet<Wedstrijd> Wedstrijden { get; set; }
         DbSet<Zitplaats> Zitplaatsen { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

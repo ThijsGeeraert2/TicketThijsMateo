@@ -11,6 +11,9 @@ namespace TicketThijsMateo.AutoMapper
             CreateMap<Club, ClubVM>();
             CreateMap<ClubVM, Club>();
 
+            CreateMap<Wedstrijd, WedstrijdVM>();
+            CreateMap<WedstrijdVM, Wedstrijd>();
+
         }
     }
 }

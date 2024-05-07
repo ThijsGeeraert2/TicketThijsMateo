@@ -49,6 +49,9 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IService<Club>, ClubIService>();
 builder.Services.AddTransient<IDAO<Club>, ClubIDAO>();
 
+builder.Services.AddTransient<IService<Wedstrijd>, WedstrijdIService>();
+builder.Services.AddTransient<IDAO<Wedstrijd>, WedstrijdIDAO>();
+
 
 // Add Automapper
 builder.Services.AddAutoMapper(typeof(Program));
