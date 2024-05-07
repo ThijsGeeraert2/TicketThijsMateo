@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using TicketThijsMateo.Domains.Context;
+using TicketThijsMateo.Repositories;
+using TicketThijsMateo.Services;
 using TicketThijsMateo.Services.Interfaces;
 using TicketThijsMateo.ViewModels;
 
@@ -10,12 +12,18 @@ namespace TicketThijsMateo.Controllers
     {
         private IService<Wedstrijd> wedstrijdService;
 
+        private IService<Club> clubService;
+
         private readonly IMapper _mapper;
 
-        public WedstrijdController(IMapper mapper, IService<Wedstrijd> service)
+        
+
+        public WedstrijdController(IMapper mapper, IService<Wedstrijd> wService, IService<Club> cService)
         {
             _mapper = mapper;
-            wedstrijdService = service;
+            wedstrijdService = wService;
+            clubService = cService;
+     
         }
 
         public async Task<IActionResult> Index()  // add using System.Threading.Tasks;

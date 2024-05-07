@@ -13,6 +13,8 @@ namespace TicketThijsMateo.Domains.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Wedstrijd>().HasOne(w => w.ThuisPloeg).WithMany().HasForeignKey(w => w.ThuisPloegId).OnDelete(DeleteBehavior.Cascade);
+
             modelBuilder.Entity<Wedstrijd>()
                 .HasOne(w => w.Stadium)
                 .WithMany()
