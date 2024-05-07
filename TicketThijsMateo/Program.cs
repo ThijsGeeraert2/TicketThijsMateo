@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using TicketThijsMateo.Data;
 using TicketThijsMateo.Domains.Context;
+using TicketThijsMateo.Repositories;
+using TicketThijsMateo.Repositories.Interfaces;
+using TicketThijsMateo.Services;
+using TicketThijsMateo.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +14,12 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
+
+//This example register a DbContext subclass called BeerDbContext as a scoped service in
+//the ASP.NET Core application service provider (a.k.a. the dependency injection container).
+builder.Services.AddDbContext<TicketDBContext>(options =>
+    options.UseSqlServer(connectionString));
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
@@ -28,10 +38,20 @@ builder.Services.Configure<RequestLocalizationOptions>(options => {
       .AddSupportedUICultures(supportedCultures);  //UICulture is used when localizing strings, for example when using resource files.
 });
 
+
+
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
+
+// syntax services.AddTransient<interface, implType>();
+builder.Services.AddTransient<IService<Club>, ClubIService>();
+builder.Services.AddTransient<IDAO<Club>, ClubIDAO>();
+
+
+// Add Automapper
+builder.Services.AddAutoMapper(typeof(Program));
 
 
 builder.Services.AddDbContext<TicketDBContext>(options =>
