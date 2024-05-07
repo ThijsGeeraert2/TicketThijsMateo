@@ -6,5 +6,7 @@
         public string? Datum { get; set; }
 
         public string? Stadium { get; set; }
+
+        public string? ThuisPloeg { get; set; }
     }
 }

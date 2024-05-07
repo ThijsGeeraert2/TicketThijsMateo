@@ -32,7 +32,7 @@ namespace TicketThijsMateo.Services
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Club>?> GetAllAsync()
+        public async Task<IEnumerable<Club>> GetAllAsync()
         {
             return await _clubDAO.GetAllAsync();
         }

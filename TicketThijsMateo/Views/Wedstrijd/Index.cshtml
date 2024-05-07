@@ -21,6 +21,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Stadium)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ThuisPloeg)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -35,6 +38,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Stadium)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThuisPloeg)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
