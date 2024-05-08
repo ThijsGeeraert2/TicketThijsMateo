@@ -37,7 +37,7 @@ namespace TicketThijsMateo.Domains.Context
                 .WithOne(w => w.UitPloeg)
                 .HasForeignKey(w => w.UitPloegId);
         }
-
+        
         public virtual DbSet<Ticket> Tickets { get; set; }
         public virtual DbSet<Abonnement> Abonnementen { get; set; }
         public virtual DbSet<Club> Clubs { get; set; }
@@ -45,6 +45,7 @@ namespace TicketThijsMateo.Domains.Context
         public virtual DbSet<Stadium> Stadia { get; set; }
         public virtual DbSet<Wedstrijd> Wedstrijden { get; set; }
         public virtual DbSet<Zitplaats> Zitplaatsen { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)

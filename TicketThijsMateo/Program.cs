@@ -50,11 +50,16 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IService<Club>, ClubIService>();
 builder.Services.AddTransient<IDAO<Club>, ClubIDAO>();
 
+
+builder.Services.AddTransient<IService<Wedstrijd>, WedstrijdIService>();
+builder.Services.AddTransient<IDAO<Wedstrijd>, WedstrijdIDAO>();
+
+
 builder.Services.AddTransient<StadiumIDAO<Stadium>, StadiumDAO>();
 builder.Services.AddTransient<StadiumIService<Stadium>, StadiumService>();
 
-builder.Services.AddTransient<WedstrijdIDAO<Wedstrijd>, WedstrijdDAO>();
-builder.Services.AddTransient<WedstrijdIService<Wedstrijd>, WedstrijdService>();
+//builder.Services.AddTransient<WedstrijdIDAO<Wedstrijd>, WedstrijdDAO>();
+//builder.Services.AddTransient<WedstrijdIService<Wedstrijd>, WedstrijdService>();
 
 // SwaggerGen produces JSON schema documents that power Swagger UI.By default, these are served up under / swagger
 //{ documentName}/ swagger.json, where { documentName} is usually the API version.
@@ -83,6 +88,7 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 });
+
 
 // Add Automapper
 builder.Services.AddAutoMapper(typeof(Program));

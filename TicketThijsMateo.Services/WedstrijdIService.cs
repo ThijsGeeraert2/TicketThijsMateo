@@ -4,40 +4,43 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TicketThijsMateo.Domains.Context;
+using TicketThijsMateo.Repositories;
 using TicketThijsMateo.Repositories.Interfaces;
 using TicketThijsMateo.Services.Interfaces;
 
 namespace TicketThijsMateo.Services
 {
-    public class ClubIService : IService<Club>
+    public class WedstrijdIService : IService<Wedstrijd>
     {
-        private IDAO<Club> _clubDAO;
+        private IDAO<Wedstrijd> _wedstrijdDAO;
 
-        public ClubIService(IDAO<Club> clubDAO) {
-            _clubDAO = clubDAO;
+        public WedstrijdIService(IDAO<Wedstrijd> we)
+        {
+            _wedstrijdDAO = we;
         }
 
-        public Task AddAsync(Club entity)
+        public Task AddAsync(Wedstrijd entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task DeleteAsync(Club entity)
+        public Task DeleteAsync(Wedstrijd entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Club?> FindByIdAsync(int Id)
+        public Task<Wedstrijd?> FindByIdAsync(int Id)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Club>> GetAllAsync()
+        public async Task<IEnumerable<Wedstrijd>> GetAllAsync()
         {
-            return await _clubDAO.GetAllAsync();
+            return await _wedstrijdDAO.GetAllAsync();
+
         }
 
-        public Task UpdateAsync(Club entity)
+        public Task UpdateAsync(Wedstrijd entity)
         {
             throw new NotImplementedException();
         }
