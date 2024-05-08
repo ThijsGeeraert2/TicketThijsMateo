@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TicketThijsMateo.Domains\TicketThijsMateo.Domains.csproj" />
     <ProjectReference Include="..\TicketThijsMateo.Repositories\TicketThijsMateo.Repositories.csproj" />
   </ItemGroup>

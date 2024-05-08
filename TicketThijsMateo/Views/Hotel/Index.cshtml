@@ -1,0 +1,21 @@
+﻿@model IEnumerable<TicketThijsMateo.ViewModels.HotelVM>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Vind een hotel bij het stadium</h1>
+
+<table class="table">
+    
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <a target="_blank" href="@Html.DisplayFor(modelItem => item.Address)">@Html.DisplayFor(modelItem => item.Name)</a>
+            </td>
+            
+        </tr>
+}
+    </tbody>
+</table>
