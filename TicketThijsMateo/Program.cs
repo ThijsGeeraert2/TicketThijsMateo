@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -47,6 +48,9 @@ builder.Services.AddControllersWithViews();
 
 
 // syntax services.AddTransient<interface, implType>();
+builder.Services.AddTransient<IEmailSender, EmailSender>();
+builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
+
 builder.Services.AddTransient<IService<Club>, ClubIService>();
 builder.Services.AddTransient<IDAO<Club>, ClubIDAO>();
 
