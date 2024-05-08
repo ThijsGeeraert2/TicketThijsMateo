@@ -14,4 +14,6 @@ namespace TicketThijsMateo.Repositories.Interfaces
         Task UpdateAsync(T entity);
         Task<T?> FindByIdAsync(int Id);
     }
+
+      
 }

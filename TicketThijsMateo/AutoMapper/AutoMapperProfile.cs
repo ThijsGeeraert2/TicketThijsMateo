@@ -17,6 +17,12 @@ namespace TicketThijsMateo.AutoMapper
 ;
 
 
+            CreateMap<Stadium, StadiumVM>();
+            CreateMap<StadiumVM, Stadium>();
+
+            CreateMap<Wedstrijd, WedstrijdVM>();
+            CreateMap<WedstrijdVM, Wedstrijd>();
+
         }
     }
 }

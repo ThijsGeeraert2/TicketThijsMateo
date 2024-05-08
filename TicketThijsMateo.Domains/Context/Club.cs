@@ -16,6 +16,7 @@ namespace TicketThijsMateo.Domains.Context
         public int StadiumId { get; set; }
         public Stadium? Stadium { get; set; }
 
-        public ICollection<Wedstrijd>? Wedstrijden { get; set;}
+        public ICollection<Wedstrijd>? ThuisWedstrijden { get; set;}
+        public ICollection<Wedstrijd>? UitWedstrijden { get; set; }
     }
 }

@@ -26,15 +26,26 @@ namespace TicketThijsMateo.Domains.Context
            .WithMany(w => w.Tickets)
 
            .HasForeignKey(t => t.WedstrijdId);
-        }
 
-        DbSet<Ticket> Tickets { get; set; }
-        DbSet<Abonnement> Abonnementen { get; set; }
-        public DbSet<Club> Clubs { get; set; }
-        DbSet<Soortplaats> Soortplaatsen { get; set; }
-        DbSet<Stadium> Stadia { get; set; }
-        public DbSet<Wedstrijd> Wedstrijden { get; set; }
-        DbSet<Zitplaats> Zitplaatsen { get; set; }
+            modelBuilder.Entity<Club>()
+        .HasMany(c => c.ThuisWedstrijden)
+        .WithOne(w => w.ThuisPloeg)
+        .HasForeignKey(w => w.ThuisPloegId);
+
+            modelBuilder.Entity<Club>()
+                .HasMany(c => c.UitWedstrijden)
+                .WithOne(w => w.UitPloeg)
+                .HasForeignKey(w => w.UitPloegId);
+        }
+        
+        public virtual DbSet<Ticket> Tickets { get; set; }
+        public virtual DbSet<Abonnement> Abonnementen { get; set; }
+        public virtual DbSet<Club> Clubs { get; set; }
+        public virtual DbSet<Soortplaats> Soortplaatsen { get; set; }
+        public virtual DbSet<Stadium> Stadia { get; set; }
+        public virtual DbSet<Wedstrijd> Wedstrijden { get; set; }
+        public virtual DbSet<Zitplaats> Zitplaatsen { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
