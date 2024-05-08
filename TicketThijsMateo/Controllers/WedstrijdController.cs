@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using TicketThijsMateo.Domains.Context;
 using TicketThijsMateo.Repositories;
 using TicketThijsMateo.Services;
@@ -14,15 +15,18 @@ namespace TicketThijsMateo.Controllers
 
         private IService<Club> clubService;
 
+        public IService<Soortplaats> soortplaatsService;
+
         private readonly IMapper _mapper;
 
         
 
-        public WedstrijdController(IMapper mapper, IService<Wedstrijd> wService, IService<Club> cService)
+        public WedstrijdController(IMapper mapper, IService<Wedstrijd> wService, IService<Club> cService, IService<Soortplaats> sService)
         {
             _mapper = mapper;
             wedstrijdService = wService;
             clubService = cService;
+            soortplaatsService = sService;
      
         }
 
@@ -32,7 +36,28 @@ namespace TicketThijsMateo.Controllers
             List<WedstrijdVM> listVM = _mapper.Map<List<WedstrijdVM>>(list);
             return View(listVM);
 
+        }
+
+        public async Task<IActionResult> Create()
+        {
+
+            var beerCreate = new TicketCreateVM()
+            {
+                Soortplaatsen = new SelectList(await soortplaatsService.GetAllAsync()
+                  , "Id", "Naam"),
+               
+            };
+
+            return View(beerCreate);
 
         }
+
+        /*[HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(//VM)
+        {
+            //maak sessie objectb aan
+        }*/
+
     }
 }
