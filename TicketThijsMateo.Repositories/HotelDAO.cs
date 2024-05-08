@@ -58,7 +58,8 @@ namespace TicketThijsMateo.Repositories
             List<Hotel> hotels = new List<Hotel>();
 
             Hashtable parameters = new Hashtable();
-            parameters.Add("q", "Hotel bij jan breydel stadion brugge");
+            parameters.Add("engine", "google");
+            parameters.Add("q", "Hotels belgie brugge" + stadiumName);
             parameters.Add("hl", "en");
             parameters.Add("gl", "us");
             parameters.Add("google_domain", "google.com");
@@ -67,7 +68,7 @@ namespace TicketThijsMateo.Repositories
             {
                 GoogleSearch search = new GoogleSearch(parameters, ApiKey);
                 JObject data = search.GetJson();
-                JArray results = (JArray)data["organic_results"];
+                JArray results = (JArray)data.SelectToken("answer_box.hotels");
 
                 int count = 0;
 
@@ -78,7 +79,8 @@ namespace TicketThijsMateo.Repositories
                     {
                         Name = result["title"].ToString(),
                         Address = result["link"].ToString(),
-                        //Thumbnail = result["thumbnail"].ToString()
+                        Thumbnail = result["image"].ToString(),
+                        Rating = (int)result["rating"],
 
 
                     };
