@@ -47,7 +47,7 @@ namespace TicketThijsMateo.Controllers
 
             Wedstrijd? wedstrijd = await wedstrijdService.FindByIdAsync(Convert.ToInt32(id));
 
-            var beerCreate = new TicketCreateVM()
+            var ticketCreate = new TicketCreateVM()
             {
                 Soortplaatsen = new SelectList(await soortplaatsService.GetAllSoortPlaatsenByStadiumId(wedstrijd.StadiumId)
                   , "Id", "Naam"),
@@ -55,7 +55,7 @@ namespace TicketThijsMateo.Controllers
             };
 
 
-            return View(beerCreate);
+            return View(ticketCreate);
 
         }
 
