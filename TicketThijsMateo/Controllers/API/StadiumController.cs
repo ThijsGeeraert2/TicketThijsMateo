@@ -12,10 +12,10 @@ namespace TicketThijsMateo.Controllers.API
     [ApiController]
     public class StadiumController : ControllerBase
     {
-        private StadiumIService<Stadium> _stadiumService;
+        private IService<Stadium> _stadiumService;
         private readonly IMapper _mapper;
 
-        public StadiumController(IMapper mapper, StadiumIService<Stadium> service)
+        public StadiumController(IMapper mapper, IService<Stadium> service)
         {
             _stadiumService = service;
             _mapper = mapper;
@@ -26,7 +26,7 @@ namespace TicketThijsMateo.Controllers.API
         {
             try
             {
-                var listStadium = await _stadiumService.GetAll();
+                var listStadium = await _stadiumService.GetAllAsync();
                 var data = _mapper.Map<List<StadiumVM>>(listStadium);
 
                 if (data == null)

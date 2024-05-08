@@ -10,10 +10,10 @@ namespace TicketThijsMateo.Controllers.API
     [ApiController]
     public class WedstrijdController : ControllerBase
     {
-        private WedstrijdIService<Wedstrijd> _wedstrijdService;
+        private IService<Wedstrijd> _wedstrijdService;
         private readonly IMapper _mapper;
 
-        public WedstrijdController(IMapper mapper, WedstrijdIService<Wedstrijd> service)
+        public WedstrijdController(IMapper mapper, IService<Wedstrijd> service)
         {
             _wedstrijdService = service;
             _mapper = mapper;

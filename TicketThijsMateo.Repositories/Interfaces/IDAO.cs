@@ -13,7 +13,9 @@ namespace TicketThijsMateo.Repositories.Interfaces
         Task DeleteAsync(T entity);
         Task UpdateAsync(T entity);
         Task<T?> FindByIdAsync(int Id);
+        Task<IEnumerable<T>?> GetAllWedstrijdenBetweenClubs(int thuisploegId, int uitploegId);
+
     }
 
-      
+
 }

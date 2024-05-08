@@ -9,51 +9,51 @@ using TicketThijsMateo.Repositories.Interfaces;
 
 namespace TicketThijsMateo.Repositories
 {
-    public class ClubIDAO : IDAO<Club>
+    public class StadiumIDAO : IDAO<Stadium>
     {
-        private readonly TicketDBContext dbContext;
+        private readonly TicketDBContext _ticketDBContext;
 
-        public ClubIDAO(TicketDBContext dbContext)
+        public StadiumIDAO(TicketDBContext ticketDBContext)
         {
-            this.dbContext = dbContext;
+            _ticketDBContext = ticketDBContext;
         }
 
-        public Task AddAsync(Club entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task DeleteAsync(Club entity)
+        public Task AddAsync(Stadium entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Club?> FindByIdAsync(int Id)
+        public Task DeleteAsync(Stadium entity)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Club>?> GetAllAsync()
+        public Task<Stadium?> FindByIdAsync(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
+     
+
+        public async Task<IEnumerable<Stadium>?> GetAllAsync()
         {
             try
-            {// select * from Bieren
-                return await dbContext.Clubs
-                    .ToListAsync(); // volgende Namespaces toevoegen bovenaan using System.Linq; using Microsoft.EntityFrameworkCore;	
+            {
+                return await _ticketDBContext.Stadia.ToListAsync();
             }
             catch (Exception ex)
             {
                 Console.WriteLine("error in DAO");
                 throw;
-
             }
         }
 
-        public Task<IEnumerable<Club>?> GetAllWedstrijdenBetweenClubs(int thuisploegId, int uitploegId)
+        public Task<IEnumerable<Stadium>?> GetAllWedstrijdenBetweenClubs(int thuisploegId, int uitploegId)
         {
             throw new NotImplementedException();
         }
 
-        public Task UpdateAsync(Club entity)
+        public Task UpdateAsync(Stadium entity)
         {
             throw new NotImplementedException();
         }

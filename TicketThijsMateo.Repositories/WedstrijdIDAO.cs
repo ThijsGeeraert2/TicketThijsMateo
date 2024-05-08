@@ -52,5 +52,21 @@ namespace TicketThijsMateo.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public async Task<IEnumerable<Wedstrijd>?> GetAllWedstrijdenBetweenClubs(int thuisploegId, int uitploegId)
+        {
+            try
+            {
+
+                return await dbContext.Wedstrijden
+                    .Where(w => w.ThuisPloegId == thuisploegId && w.UitPloegId == uitploegId)
+                    .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in DAO while fetching matches between clubs: " + ex.Message);
+                throw;
+            }
+        }
     }
 }

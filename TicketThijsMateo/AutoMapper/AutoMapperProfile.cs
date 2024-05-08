@@ -15,13 +15,12 @@ namespace TicketThijsMateo.AutoMapper
                 .ForMember(dest => dest.ThuisPloeg, opts => opts.MapFrom(src => src.ThuisPloeg.Naam))
                 .ForMember(dest => dest.UitPloeg, opts => opts.MapFrom(src => src.UitPloeg.Naam));
 ;
+            CreateMap<WedstrijdVM, Wedstrijd>();
 
 
             CreateMap<Stadium, StadiumVM>();
             CreateMap<StadiumVM, Stadium>();
 
-        /*    CreateMap<Wedstrijd, WedstrijdVM>();
-            CreateMap<WedstrijdVM, Wedstrijd>();*/
 
         }
     }
