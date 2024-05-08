@@ -26,6 +26,16 @@ namespace TicketThijsMateo.Domains.Context
            .WithMany(w => w.Tickets)
 
            .HasForeignKey(t => t.WedstrijdId);
+
+            modelBuilder.Entity<Club>()
+        .HasMany(c => c.ThuisWedstrijden)
+        .WithOne(w => w.ThuisPloeg)
+        .HasForeignKey(w => w.ThuisPloegId);
+
+            modelBuilder.Entity<Club>()
+                .HasMany(c => c.UitWedstrijden)
+                .WithOne(w => w.UitPloeg)
+                .HasForeignKey(w => w.UitPloegId);
         }
 
         public virtual DbSet<Ticket> Tickets { get; set; }
