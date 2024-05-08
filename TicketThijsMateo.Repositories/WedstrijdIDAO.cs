@@ -37,6 +37,7 @@ namespace TicketThijsMateo.Repositories
                 return await dbContext.Wedstrijden
                     .Include(b => b.Stadium)
                     .Include(b => b.ThuisPloeg)
+                    .Include(b => b.UitPloeg)
                     .ToListAsync(); // volgende Namespaces toevoegen bovenaan using System.Linq; using Microsoft.EntityFrameworkCore;	
             }
             catch (Exception ex)
