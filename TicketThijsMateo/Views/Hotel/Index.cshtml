@@ -1,0 +1,32 @@
+﻿@model IEnumerable<TicketThijsMateo.ViewModels.HotelVM>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Vind een hotel bij het stadium</h1>
+
+<table class="table">
+    
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <a target="_blank" href="@Html.DisplayFor(modelItem => item.Address)">@Html.DisplayFor(modelItem => item.Name)</a>
+            </td>
+                <td>
+                    @{
+                        // Loop to generate star icons based on the rating
+                        for (int i = 0; i < item.Rating; i++)
+                        {
+                            <img width="20px" src="https://cdn.iconscout.com/icon/free/png-256/free-star-bookmark-favorite-shape-rank-16-28621.png" alt="Star" />
+                        }
+                    }
+                </td>
+            <td>
+                    <img src="@Html.DisplayFor(modelItem => item.Thumbnail)"  />
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
