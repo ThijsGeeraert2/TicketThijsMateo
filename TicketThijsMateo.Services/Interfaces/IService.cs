@@ -16,6 +16,9 @@ namespace TicketThijsMateo.Services.Interfaces
 
         Task<IEnumerable<T>?> GetAllWedstrijdenBetweenClubs(int thuisPloegId, int uitPloegId);
 
+        Task<IEnumerable<T>?> GetAllSoortPlaatsenByStadiumId(int Id);
+
+
     }
 
 

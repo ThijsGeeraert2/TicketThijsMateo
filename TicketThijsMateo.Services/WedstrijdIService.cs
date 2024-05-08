@@ -29,9 +29,9 @@ namespace TicketThijsMateo.Services
             throw new NotImplementedException();
         }
 
-        public Task<Wedstrijd?> FindByIdAsync(int Id)
+        public async Task<Wedstrijd?> FindByIdAsync(int Id)
         {
-            throw new NotImplementedException();
+            return await _wedstrijdDAO.FindByIdAsync(Id);
         }
 
         public async Task<IEnumerable<Wedstrijd>> GetAllAsync()
@@ -57,6 +57,11 @@ namespace TicketThijsMateo.Services
                 Console.WriteLine("Error in WedstrijdService while fetching matches between clubs: " + ex.Message);
                 throw;
             }
+        }
+
+        public Task<IEnumerable<Wedstrijd>?> GetAllSoortPlaatsenByStadiumId(int Id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

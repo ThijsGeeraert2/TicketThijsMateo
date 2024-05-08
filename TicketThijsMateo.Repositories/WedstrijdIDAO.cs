@@ -25,9 +25,22 @@ namespace TicketThijsMateo.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Wedstrijd?> FindByIdAsync(int Id)
+        public async Task<Wedstrijd?> FindByIdAsync(int Id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await dbContext.Wedstrijden.Where(b => b.Id == Id)
+                    .Include(b => b.Stadium)
+                    .Include(b => b.ThuisPloeg)
+                    .Include(b => b.UitPloeg)
+                    .FirstOrDefaultAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("error in DAO");
+                throw;
+
+            }
         }
 
         public async Task<IEnumerable<Wedstrijd>> GetAllAsync()
@@ -67,6 +80,11 @@ namespace TicketThijsMateo.Repositories
                 Console.WriteLine("Error in DAO while fetching matches between clubs: " + ex.Message);
                 throw;
             }
+        }
+
+        public Task<IEnumerable<Wedstrijd>?> GetAllSoortPlaatsenByStadiumId(int Id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

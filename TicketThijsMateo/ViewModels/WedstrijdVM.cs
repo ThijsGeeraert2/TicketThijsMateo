@@ -10,6 +10,8 @@ namespace TicketThijsMateo.ViewModels
       
         public string? Datum { get; set; }
 
+        public int StadiumId { get; set; }
+
         public string? Stadium { get; set; }
 
         public string? ThuisPloeg { get; set; }

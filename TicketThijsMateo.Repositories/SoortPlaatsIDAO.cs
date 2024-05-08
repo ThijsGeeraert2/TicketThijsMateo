@@ -27,9 +27,10 @@ namespace TicketThijsMateo.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Soortplaats?> FindByIdAsync(int Id)
+        public Task<Soortplaats?> FindByIdAsync(int Id) //moet bystadiumid worden
         {
             throw new NotImplementedException();
+
         }
 
         public async Task<IEnumerable<Soortplaats>> GetAllAsync()
@@ -44,6 +45,20 @@ namespace TicketThijsMateo.Repositories
                 Console.WriteLine("error in DAO");
                 throw;
 
+            }
+        }
+
+        public async Task<IEnumerable<Soortplaats>?> GetAllSoortPlaatsenByStadiumId(int Id)
+        {
+            try
+            {
+
+                return await dbContext.Soortplaatsen.Where(b => b.StadiumId == Id)
+                    .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("error DAO beer");
             }
         }
 

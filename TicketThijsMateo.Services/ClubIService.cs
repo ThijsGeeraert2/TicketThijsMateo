@@ -37,6 +37,11 @@ namespace TicketThijsMateo.Services
             return await _clubDAO.GetAllAsync();
         }
 
+        public Task<IEnumerable<Club>?> GetAllSoortPlaatsenByStadiumId(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<IEnumerable<Club>?> GetAllWedstrijdenBetweenClubs(int thuisPloegId, int uitPloegId)
         {
             throw new NotImplementedException();

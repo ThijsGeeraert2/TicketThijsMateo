@@ -10,7 +10,7 @@ using TicketThijsMateo.Services.Interfaces;
 
 namespace TicketThijsMateo.Services
 {
-    public class StadiumIService: IService<Stadium>
+    public class StadiumIService : IService<Stadium>
     {
         private IDAO<Stadium> _stadiumDAO;
 
@@ -37,6 +37,11 @@ namespace TicketThijsMateo.Services
         public async Task<IEnumerable<Stadium>?> GetAllAsync()
         {
             return await _stadiumDAO.GetAllAsync();
+        }
+
+        public Task<IEnumerable<Stadium>?> GetAllSoortPlaatsenByStadiumId(int Id)
+        {
+            throw new NotImplementedException();
         }
 
         public Task<IEnumerable<Stadium>?> GetAllWedstrijdenBetweenClubs(int thuisPloegId, int uitPloegId)
