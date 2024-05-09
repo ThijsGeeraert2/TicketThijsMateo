@@ -55,5 +55,10 @@ namespace TicketThijsMateo.Services
         {
             return await _hotelDAO.GetHotelsNearStadium(stadiumName);
         }
+
+        public Task<IEnumerable<Hotel>?> GetAllSoortPlaatsenByStadiumId(int Id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

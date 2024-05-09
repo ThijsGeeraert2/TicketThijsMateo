@@ -102,6 +102,11 @@ namespace TicketThijsMateo.Repositories
 
             return hotels;
         }
+
+        public Task<IEnumerable<Hotel>?> GetAllSoortPlaatsenByStadiumId(int Id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

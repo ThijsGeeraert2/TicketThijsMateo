@@ -67,6 +67,11 @@ namespace TicketThijsMateo.Repositories
             throw new NotImplementedException();
         }
 
+        public Task<IEnumerable<Soortplaats>> GetHotelsNearStadium(string stadiumName)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task UpdateAsync(Soortplaats entity)
         {
             throw new NotImplementedException();
