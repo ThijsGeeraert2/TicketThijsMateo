@@ -1,4 +1,7 @@
-﻿@model TicketThijsMateo.ViewModels.ShoppingCartVM
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@model TicketThijsMateo.ViewModels.ShoppingCartVM
 
 @{
     ViewData["Title"] = "Index";
@@ -54,7 +57,7 @@
                     <td>
                         <a asp-action="Delete" asp-route-bierNr="@item.WedstrijdId">
 
-                            <img src="~/Images/deleteIcon.png" />
+                            <img src="~/Images/delete.png" style="width:25px;height:25px"/>
                         </a>
 
                     </td>
@@ -82,5 +85,25 @@ else
     @Html.Raw("Your shoppingcart is empty at the moment")
 }
 
+<div>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <h5>You are logged in </h5>
 
-<a asp-controller="Beer" asp-action="Index"> Continue</a>
+        <button class="btn">
+            <a asp-controller="ShoppingCart" asp-action="Index"> Bestel</a>
+        </button>
+    }
+    else
+    {
+        <h2>Please log in before ordering</h2>
+        <div class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </div>
+        <div class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </div>
+    }
+</div>
+
+
