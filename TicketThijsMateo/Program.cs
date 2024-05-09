@@ -12,6 +12,8 @@ using TicketThijsMateo.Services;
 using TicketThijsMateo.Services.Interfaces;
 using TicketThijsMateo.util.Mail;
 using TicketThijsMateo.util.Mail.Interfaces;
+using TicketThijsMateo.util.PDF.Interfaces;
+using TicketThijsMateo.util.PDF;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,6 +41,7 @@ builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("Emai
 //AppSettings.json file en vervolgens wordt er een emailsettings - object
 //aangemaakt en de waarden worden geïnjecteerd in het object
 builder.Services.AddSingleton<IEmailSend, EmailSend>();
+builder.Services.AddSingleton<ICreatePDF, CreatePDF>();
 //Als in een Constructor een IEmailSender-parameter wordt gevonden, zal een
 //emailSender - object worden aangemaakt.
 
