@@ -8,7 +8,7 @@ namespace TicketThijsMateo.ViewModels
     {
         public int Id { get; set; }
       
-        public string? Datum { get; set; }
+        public DateTime? Datum { get; set; }
 
         public int StadiumId { get; set; }
 
