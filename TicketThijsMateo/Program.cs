@@ -56,8 +56,12 @@ builder.Services.AddTransient<IService<Stadium>, StadiumIService>();
 builder.Services.AddTransient<IDAO<Wedstrijd>, WedstrijdIDAO>();
 builder.Services.AddTransient<IService<Wedstrijd>, WedstrijdIService>();
 
+builder.Services.AddTransient<IDAO<Soortplaats>, SoortPlaatsIDAO>();
+builder.Services.AddTransient<IService<Soortplaats>, SoortPlaatsIService>();
+
 builder.Services.AddTransient<IDAO<Hotel>, HotelDAO>();
 builder.Services.AddTransient<IService<Hotel>, HotelService>();
+
 
 // SwaggerGen produces JSON schema documents that power Swagger UI.By default, these are served up under / swagger
 //{ documentName}/ swagger.json, where { documentName} is usually the API version.
@@ -90,6 +94,10 @@ builder.Services.AddSwaggerGen(c =>
 // Add Automapper
 builder.Services.AddAutoMapper(typeof(Program));
 
+builder.Services.AddSession(options =>
+{
+    options.Cookie.Name = "be.Vives.Session";
+});
 
 builder.Services.AddDbContext<TicketDBContext>(options =>
 {
@@ -133,6 +141,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseSession();
 
 app.UseAuthorization();
 

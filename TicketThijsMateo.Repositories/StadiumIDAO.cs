@@ -48,6 +48,11 @@ namespace TicketThijsMateo.Repositories
             }
         }
 
+        public Task<IEnumerable<Stadium>?> GetAllSoortPlaatsenByStadiumId(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<IEnumerable<Stadium>?> GetAllWedstrijdenBetweenClubs(int thuisploegId, int uitploegId)
         {
             throw new NotImplementedException();

@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TicketThijsMateo.Extensions;
+using TicketThijsMateo.ViewModels;
 
 namespace TicketThijsMateo.Controllers
 {
@@ -6,7 +8,10 @@ namespace TicketThijsMateo.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            ShoppingCartVM? cartList = HttpContext.Session.GetObject<ShoppingCartVM>("ShoppingCart");
+
+            return View(cartList);
         }
+
     }
 }

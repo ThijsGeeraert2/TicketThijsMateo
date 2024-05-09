@@ -19,6 +19,9 @@
                 @Html.DisplayNameFor(model => model.Datum)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.StadiumId)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Stadium)
             </th>
             <th>
@@ -40,6 +43,9 @@
                 @Html.DisplayFor(modelItem => item.Datum)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.StadiumId)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Stadium)
             </td>
             <td>
@@ -48,11 +54,15 @@
             <td>
                 @Html.DisplayFor(modelItem => item.UitPloeg)
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
+                <td>
+                    @* @Html.ActionLink("Edit", "Edit", new {  id=item.Biernr  }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Biernr }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Biernr }) *@
+
+                    <a asp-action="Create" asp-route-id="@item.Id">
+                        <button class="btn btn-primary">Buy Ticket</button>
+                    </a>
+                </td>
         </tr>
 }
     </tbody>
