@@ -1,0 +1,106 @@
+﻿@model TicketThijsMateo.ViewModels.ShoppingCartVM
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h3>
+    <em>Review</em> your cart:
+</h3>
+
+
+
+@if (Model != null)
+{
+
+    <form asp-action="Payment">
+        <table>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ticket[0].WedstrijdId)
+
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Ticket[0].Betaald)
+
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ticket[0].Voornaam)
+
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ticket[0].Familienaam)
+
+                </th>
+                <th>
+                    Subtotaal
+                </th>
+            </tr>
+
+            @{
+                float total = 0;
+            }
+            @for (var i = 0; i < Model.Ticket.Count; i++)
+            {
+
+                <tr>
+                    @Html.HiddenFor(m => Model.Ticket[i].WedstrijdId)
+                    <td>
+                        <input asp-for="@Model.Ticket[i].Betaald" readonly="readonly"
+                               class="form-control" />
+
+                    </td>
+                    <td>
+                        <input asp-for="@Model.Ticket[i].Voornaam" type="text"
+                               readonly="readonly" />
+
+                    </td>
+                    <td>
+                        <input asp-for="@Model.Ticket[i].Familienaam" type="text"
+                               readonly="readonly" />
+
+                @*         @{
+                            var subtotaal = Model.Ticket[i].Prijs
+                            * Model.Cart[i].Aantal;
+                            total += subtotaal;
+                        } *@
+                    </td>
+                    <td>
+               @*          <input id="@("txtSubTotal" + @i)"
+                               value="@subtotaal"
+                               type="number" readonly="readonly" /> *@
+                    </td>
+
+                    <td>
+                        <a asp-action="Delete" asp-route-bierNr="@Model.Ticket[i].WedstrijdId"> 
+
+                            <img src="~/Images/deleteIcon.png" />
+                        </a>
+
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td>
+                    <input type="submit" value="Checkout"
+                           class="btn btn-default" />
+                </td>
+            </tr>
+            <tr>
+
+                <td id="cart-total">
+                    Total  <input id="txtTotal" value="@total"
+                                  type="number" readonly="readonly" />
+                </td>
+            </tr>
+        </table>
+    </form>
+}
+else
+{
+    @Html.Raw("Your shoppingcart is empty at the moment")
+}
+
+
+<a asp-controller="Beer" asp-action="Index"> Continue</a>

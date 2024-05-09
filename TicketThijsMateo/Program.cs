@@ -90,6 +90,10 @@ builder.Services.AddSwaggerGen(c =>
 // Add Automapper
 builder.Services.AddAutoMapper(typeof(Program));
 
+builder.Services.AddSession(options =>
+{
+    options.Cookie.Name = "be.Vives.Session";
+});
 
 builder.Services.AddDbContext<TicketDBContext>(options =>
 {
@@ -133,6 +137,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseSession();
 
 app.UseAuthorization();
 

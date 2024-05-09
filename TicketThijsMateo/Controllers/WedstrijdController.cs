@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using TicketThijsMateo.Domains.Context;
+using TicketThijsMateo.Extensions;
 using TicketThijsMateo.Repositories;
 using TicketThijsMateo.Services;
 using TicketThijsMateo.Services.Interfaces;
@@ -49,8 +50,9 @@ namespace TicketThijsMateo.Controllers
 
             var ticketCreate = new TicketCreateVM()
             {
-                Soortplaatsen = new SelectList(await soortplaatsService.GetAllSoortPlaatsenByStadiumId(wedstrijd.StadiumId)
+                Soortplaatsen = new SelectList(await soortplaatsService.GetAllSoortPlaatsenByStadiumId(wedstrijd.Stadium.Id)
                   , "Id", "Naam"),
+                wedstrijdId = wedstrijd.Id,
                
             };
 
@@ -59,12 +61,42 @@ namespace TicketThijsMateo.Controllers
 
         }
 
-        /*[HttpPost]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(//VM)
+        public async Task<IActionResult> Create(TicketCreateVM ticketCreateVM)
         {
-            //maak sessie objectb aan
-        }*/
 
+            if (ticketCreateVM != null)
+            {
+                TicketVM item = new TicketVM
+                {
+                    Betaald = false,
+                    Voornaam = ticketCreateVM.Voornaam,
+                    Familienaam = ticketCreateVM.Naam,
+                    WedstrijdId = ticketCreateVM.wedstrijdId,
+                    
+                };
+
+                ShoppingCartVM? shopping;
+
+                if (HttpContext.Session.GetObject<ShoppingCartVM>("ShoppingCart") != null)
+                {
+                    shopping = HttpContext.Session.GetObject<ShoppingCartVM>("ShoppingCart");
+                }
+                else
+                {
+                    shopping = new ShoppingCartVM();
+                    shopping.Ticket = new List<TicketVM>();
+                }
+
+                shopping?.Ticket?.Add(item);
+                HttpContext.Session.SetObject("ShoppingCart", shopping);
+
+            }
+            return RedirectToAction("Index", "ShoppingCart");
+           
+        }
     }
+
+    
 }
