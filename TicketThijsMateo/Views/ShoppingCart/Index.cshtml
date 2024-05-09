@@ -33,47 +33,26 @@
                     @Html.DisplayNameFor(model => model.Ticket[0].Familienaam)
 
                 </th>
-                <th>
-                    Subtotaal
-                </th>
+        
             </tr>
 
-            @{
-                float total = 0;
-            }
-            @for (var i = 0; i < Model.Ticket.Count; i++)
+            @foreach (var item in Model.Ticket)
             {
-
                 <tr>
-                    @Html.HiddenFor(m => Model.Ticket[i].WedstrijdId)
                     <td>
-                        <input asp-for="@Model.Ticket[i].Betaald" readonly="readonly"
-                               class="form-control" />
-
+                        @Html.DisplayFor(modelItem => item.WedstrijdId)
                     </td>
                     <td>
-                        <input asp-for="@Model.Ticket[i].Voornaam" type="text"
-                               readonly="readonly" />
-
+                        @Html.DisplayFor(modelItem => item.Betaald)
                     </td>
                     <td>
-                        <input asp-for="@Model.Ticket[i].Familienaam" type="text"
-                               readonly="readonly" />
-
-                @*         @{
-                            var subtotaal = Model.Ticket[i].Prijs
-                            * Model.Cart[i].Aantal;
-                            total += subtotaal;
-                        } *@
+                        @Html.DisplayFor(modelItem => item.Voornaam)
                     </td>
                     <td>
-               @*          <input id="@("txtSubTotal" + @i)"
-                               value="@subtotaal"
-                               type="number" readonly="readonly" /> *@
+                        @Html.DisplayFor(modelItem => item.Familienaam)
                     </td>
-
                     <td>
-                        <a asp-action="Delete" asp-route-bierNr="@Model.Ticket[i].WedstrijdId"> 
+                        <a asp-action="Delete" asp-route-bierNr="@item.WedstrijdId">
 
                             <img src="~/Images/deleteIcon.png" />
                         </a>
@@ -81,7 +60,8 @@
                     </td>
                 </tr>
             }
-            <tr>
+
+      @*       <tr>
                 <td>
                     <input type="submit" value="Checkout"
                            class="btn btn-default" />
@@ -93,7 +73,7 @@
                     Total  <input id="txtTotal" value="@total"
                                   type="number" readonly="readonly" />
                 </td>
-            </tr>
+            </tr> *@
         </table>
     </form>
 }
