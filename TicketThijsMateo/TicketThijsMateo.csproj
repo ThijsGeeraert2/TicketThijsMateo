@@ -23,12 +23,14 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.12" />
+    <PackageReference Include="QRCoder" Version="1.4.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\TicketThijsMateo.Domains\TicketThijsMateo.Domains.csproj" />
     <ProjectReference Include="..\TicketThijsMateo.Services\TicketThijsMateo.Services.csproj" />
+    <ProjectReference Include="..\TicketThijsMateo.util\TicketThijsMateo.util.csproj" />
   </ItemGroup>
 
 </Project>

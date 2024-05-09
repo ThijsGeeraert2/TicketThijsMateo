@@ -1,13 +1,19 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using NuGet.Configuration;
 using TicketThijsMateo.Data;
 using TicketThijsMateo.Domains.Context;
 using TicketThijsMateo.Repositories;
 using TicketThijsMateo.Repositories.Interfaces;
 using TicketThijsMateo.Services;
 using TicketThijsMateo.Services.Interfaces;
+using TicketThijsMateo.util.Mail;
+using TicketThijsMateo.util.Mail.Interfaces;
+using TicketThijsMateo.util.PDF.Interfaces;
+using TicketThijsMateo.util.PDF;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +35,15 @@ builder.Services.AddLocalization(options => options.ResourcesPath = "Resources")
 builder.Services.AddControllersWithViews()
     .AddViewLocalization(LanguageViewLocationExpanderFormat.SubFolder) // vertaling op View
     .AddDataAnnotationsLocalization(); // vertaling op ViewModel
+
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+// Configuration.GetSection("EmailSettings")) zal de instellingen opvragen uit de
+//AppSettings.json file en vervolgens wordt er een emailsettings - object
+//aangemaakt en de waarden worden geïnjecteerd in het object
+builder.Services.AddSingleton<IEmailSend, EmailSend>();
+builder.Services.AddSingleton<ICreatePDF, CreatePDF>();
+//Als in een Constructor een IEmailSender-parameter wordt gevonden, zal een
+//emailSender - object worden aangemaakt.
 
 // we need to decide which cultures we support, and which is the default culture.
 var supportedCultures = new[] { "nl", "en", "fr" };
