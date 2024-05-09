@@ -66,6 +66,11 @@ namespace TicketThijsMateo.Repositories
             throw new NotImplementedException();
         }
 
+        public Task<IEnumerable<Wedstrijd>?> GetHotelsNearStadium(string stadiumName)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<IEnumerable<Wedstrijd>?> GetAllWedstrijdenBetweenClubs(int thuisploegId, int uitploegId)
         {
             try

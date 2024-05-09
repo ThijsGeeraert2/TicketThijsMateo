@@ -33,6 +33,13 @@ namespace TicketThijsMateo.Repositories
             throw new NotImplementedException();
         }
 
+        public Task<IEnumerable<Club>?> GetHotelsNearStadium(string stadiumName)
+        {
+            throw new NotImplementedException();
+        }
+
+
+
         public async Task<IEnumerable<Club>?> GetAllAsync()
         {
             try

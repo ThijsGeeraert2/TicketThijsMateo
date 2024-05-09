@@ -19,6 +19,9 @@ namespace TicketThijsMateo.Services.Interfaces
         Task<IEnumerable<T>?> GetAllSoortPlaatsenByStadiumId(int Id);
 
 
+        Task<IEnumerable<T>?> GetHotelsNearStadium(string stadiumName);
+
+
     }
 
 
