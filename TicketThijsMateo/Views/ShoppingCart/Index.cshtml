@@ -16,7 +16,7 @@
 @if (Model != null)
 {
 
-    <form asp-action="Payment">
+    <form asp-action="Payment" class="form-control mb-3">
         <table>
             <tr>
                 <th>
@@ -96,13 +96,13 @@ else
     }
     else
     {
-        <h2>Please log in before ordering</h2>
-        <div class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
-        </div>
-        <div class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
-        </div>
+        <h5>Please log in before ordering</h5>
+        <button class="btn btn-primary">
+            <a class="text-white" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </button>
+        <button class="btn btn-primary">
+            <a class="text-white" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </button>
     }
 </div>
 
