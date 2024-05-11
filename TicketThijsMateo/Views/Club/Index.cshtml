@@ -31,9 +31,9 @@
                 @Html.DisplayFor(modelItem => item.Naam)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                   <a asp-action="Create" asp-route-id="@item.Id">
+                        <button class="btn btn-primary">Buy Subscription</button>
+                    </a>
             </td>
         </tr>
 }
