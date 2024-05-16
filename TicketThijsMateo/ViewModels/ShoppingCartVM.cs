@@ -9,6 +9,7 @@
 
     public class TicketVM
     {
+        public int TicketId { get; set; }
         public DateTime? AankoopDatum { get; set; }
 
         public int WedstrijdId { get; set; }
