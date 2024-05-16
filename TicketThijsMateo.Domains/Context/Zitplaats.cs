@@ -15,6 +15,5 @@ namespace TicketThijsMateo.Domains.Context
         public Abonnement? Abonnement { get; set; }
         public int SoortplaatsId { get; set; }
         public Soortplaats? Soortplaats { get; set; }
-
     }
 }

@@ -77,6 +77,9 @@ builder.Services.AddTransient<IService<Soortplaats>, SoortPlaatsIService>();
 builder.Services.AddTransient<IDAO<Hotel>, HotelDAO>();
 builder.Services.AddTransient<IService<Hotel>, HotelService>();
 
+builder.Services.AddTransient<IDAO<Ticket>, TicketDAO>();
+builder.Services.AddTransient<IService<Ticket>, TicketService>();
+
 
 // SwaggerGen produces JSON schema documents that power Swagger UI.By default, these are served up under / swagger
 //{ documentName}/ swagger.json, where { documentName} is usually the API version.

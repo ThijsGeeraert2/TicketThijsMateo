@@ -35,7 +35,7 @@ namespace TicketThijsMateo.util.PDF
 
                 document.Add(image);
                 document.Add(new Paragraph("Tickets Jupiler Pro League").SetFontSize(20));
-                document.Add(new Paragraph("Ticketnr: 001").SetFont(PdfFontFactory.CreateFont(StandardFonts.HELVETICA)).SetFontSize(16).SetFontColor(ColorConstants.BLUE));
+                document.Add(new Paragraph("Ticketnr:" + ticket.Id).SetFont(PdfFontFactory.CreateFont(StandardFonts.HELVETICA)).SetFontSize(16).SetFontColor(ColorConstants.BLUE));
                 document.Add(new Paragraph("Datum: " + DateTime.Now.ToShortDateString()));
                 document.Add(new Paragraph(""));
                 document.Add(new Paragraph("Beste " + ticket.Voornaam + " " + ticket.Familienaam));

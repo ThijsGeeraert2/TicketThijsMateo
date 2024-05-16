@@ -24,7 +24,7 @@ namespace TicketThijsMateo.AutoMapper
             CreateMap<Hotel, HotelVM>();
             CreateMap<HotelVM, Hotel>();
 
-
+            CreateMap<TicketVM, Ticket>();
         }
     }
 }
