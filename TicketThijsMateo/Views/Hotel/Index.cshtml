@@ -4,9 +4,12 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Vind een hotel bij het stadium</h1>
+<h1>Vind een hotel bij het Stadium</h1>
 
-<table class="table">
+<a asp-action="Index" asp-controller="Stadia">
+    <button class="btn btn-primary">Terug naar Stadia Lijst</button>
+</a>
+<table class="table mt-1">
     
     <tbody>
 @foreach (var item in Model) {
@@ -24,7 +27,7 @@
                     }
                 </td>
             <td>
-                    <img src="@Html.DisplayFor(modelItem => item.Thumbnail)"  />
+                    <img src="@Html.DisplayFor(modelItem => item.Thumbnail)"  style="width:350px"/>
             </td>
         </tr>
 }
