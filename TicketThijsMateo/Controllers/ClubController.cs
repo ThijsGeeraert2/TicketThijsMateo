@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using TicketThijsMateo.Domains.Context;
+using TicketThijsMateo.Extensions;
 using TicketThijsMateo.Services;
 using TicketThijsMateo.Services.Interfaces;
 using TicketThijsMateo.ViewModels;
@@ -50,6 +51,42 @@ namespace TicketThijsMateo.Controllers
 
 
             return View(svm);
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(SubscriptionCreateVM svm)
+        {
+
+            if (svm != null)
+            {
+                SubscriptionVM item = new SubscriptionVM
+                {
+                    Betaald = false,
+                    Voornaam = svm.Voornaam,
+                    Familienaam = svm.Naam,
+                    ClubId = svm.ClubId,
+
+                };
+
+                ShoppingCartVM? shopping;
+
+                if (HttpContext.Session.GetObject<ShoppingCartVM>("ShoppingCart") != null)
+                {
+                    shopping = HttpContext.Session.GetObject<ShoppingCartVM>("ShoppingCart");
+                }
+                else
+                {
+                    shopping = new ShoppingCartVM();
+                    shopping.Subscription = new List<SubscriptionVM>();
+                }
+
+                shopping?.Subscription?.Add(item);
+                HttpContext.Session.SetObject("ShoppingCart", shopping);
+
+            }
+            return RedirectToAction("Index", "ShoppingCart");
 
         }
     }

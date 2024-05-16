@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TicketThijsMateo.Domains.Context;
+using TicketThijsMateo.Repositories;
 using TicketThijsMateo.Repositories.Interfaces;
 using TicketThijsMateo.Services.Interfaces;
 
@@ -27,9 +28,10 @@ namespace TicketThijsMateo.Services
             throw new NotImplementedException();
         }
 
-        public Task<Club?> FindByIdAsync(int Id)
+        public async Task<Club?> FindByIdAsync(int Id)
         {
-            throw new NotImplementedException();
+            return await _clubDAO.FindByIdAsync(Id);
+
         }
 
         public async Task<IEnumerable<Club>> GetAllAsync()
