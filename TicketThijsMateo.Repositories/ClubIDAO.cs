@@ -28,9 +28,20 @@ namespace TicketThijsMateo.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Club?> FindByIdAsync(int Id)
+        public async Task<Club?> FindByIdAsync(int Id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await dbContext.Clubs.Where(b => b.Id == Id)
+                    .Include(b => b.Stadium)
+                    .FirstOrDefaultAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("error in DAO");
+                throw;
+
+            }
         }
 
         public Task<IEnumerable<Club>?> GetHotelsNearStadium(string stadiumName)
