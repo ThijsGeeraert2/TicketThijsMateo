@@ -29,9 +29,9 @@ namespace TicketThijsMateo.Services
             throw new NotImplementedException();
         }
 
-        public Task<Stadium?> FindByIdAsync(int Id)
+        public async Task<Stadium?> FindByIdAsync(int Id)
         {
-            throw new NotImplementedException();
+            return await _stadiumDAO.FindByIdAsync(Id);
         }
 
         public async Task<IEnumerable<Stadium>?> GetAllAsync()
