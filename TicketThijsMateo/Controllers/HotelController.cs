@@ -10,18 +10,22 @@ namespace TicketThijsMateo.Controllers
     public class HotelController : Controller
     {
         private IService<Hotel> _hotelService;
+        private IService<Stadium> _stadiumService;
+
 
         private readonly IMapper _mapper;
 
-        public HotelController(IMapper mapper, IService<Hotel> hotelservice)
+        public HotelController(IMapper mapper, IService<Hotel> hotelservice, IService<Stadium> stadiumService)
         {
             _mapper = mapper;
             _hotelService = hotelservice;
+            _stadiumService = stadiumService;
         }
 
-        public async Task<IActionResult> Index()  // add using System.Threading.Tasks;
+        public async Task<IActionResult> Index(int id)  // add using System.Threading.Tasks;
         {
-            var list = await _hotelService.GetHotelsNearStadium("Brugge");
+            Stadium stadium = await _stadiumService.FindByIdAsync(id);
+            var list = await _hotelService.GetHotelsNearStadium(stadium.Adres);
             List<HotelVM> listVM = _mapper.Map<List<HotelVM>>(list);
             return View(listVM);
 

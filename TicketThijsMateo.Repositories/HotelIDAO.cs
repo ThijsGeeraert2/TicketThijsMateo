@@ -59,7 +59,7 @@ namespace TicketThijsMateo.Repositories
 
             Hashtable parameters = new Hashtable();
             parameters.Add("engine", "google");
-            parameters.Add("q", "Hotels belgie brugge" + stadiumName);
+            parameters.Add("q", "Hotels belgie " + stadiumName);
             parameters.Add("hl", "en");
             parameters.Add("gl", "us");
             parameters.Add("google_domain", "google.com");
