@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using TicketThijsMateo.Domains.Context;
 using TicketThijsMateo.Services;
 using TicketThijsMateo.Services.Interfaces;
@@ -43,6 +44,7 @@ namespace TicketThijsMateo.Controllers.API
                 return StatusCode(500, new { error = ex.Message });
             }
         }
-        
+
+
     }
 }

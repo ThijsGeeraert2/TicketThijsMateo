@@ -29,5 +29,21 @@ namespace TicketThijsMateo.Controllers
             return View(listVM);
 
         }
+
+
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            Stadium? stadium = await stadiumService.FindByIdAsync(Convert.ToInt32(id));
+
+
+
+            return View(stadium);
+
+        }
     }
 }

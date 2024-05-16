@@ -6,9 +6,6 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -18,9 +15,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
-            <th>
+     @*        <th>
                 @Html.DisplayNameFor(model => model.Adres)
-            </th>
+            </th> *@
             <th></th>
         </tr>
     </thead>
@@ -33,14 +30,19 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-            <td>
+         @*    <td>
                 @Html.DisplayFor(modelItem => item.Adres)
-            </td>
-            <td>
+            </td> *@
+ @*            <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new {  Id=item.Id }) |
                 @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
+            </td> *@
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">
+                        <button class="btn btn-primary">Details</button>
+                    </a>
+                </td>
         </tr>
 }
     </tbody>

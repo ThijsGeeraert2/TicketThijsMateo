@@ -28,9 +28,19 @@ namespace TicketThijsMateo.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Stadium?> FindByIdAsync(int Id)
+        public async Task<Stadium?> FindByIdAsync(int Id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await _ticketDBContext.Stadia.Where(b => b.Id == Id)
+                    .FirstOrDefaultAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("error in DAO");
+                throw;
+
+            }
         }
 
      
