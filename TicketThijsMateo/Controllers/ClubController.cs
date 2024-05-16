@@ -83,6 +83,11 @@ namespace TicketThijsMateo.Controllers
                     shopping.Subscription = new List<SubscriptionVM>();
                 }
 
+                if(shopping.Subscription == null)
+                {
+                    shopping.Subscription = new List<SubscriptionVM>();
+                }
+
                 shopping?.Subscription?.Add(item);
                 HttpContext.Session.SetObject("ShoppingCart", shopping);
 

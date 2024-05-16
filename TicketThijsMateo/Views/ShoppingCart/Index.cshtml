@@ -11,61 +11,62 @@
     <em>Review</em> your cart:
 </h3>
 
-
-
-@if (Model.Ticket != null && Model.Ticket.Any())
+@if(Model != null)
 {
-    <form asp-action="Payment" class="form-control mb-3">
-        <table>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.Ticket[0].WedstrijdId)</th>
-                <th>@Html.DisplayNameFor(model => model.Ticket[0].Betaald)</th>
-                <th>@Html.DisplayNameFor(model => model.Ticket[0].Voornaam)</th>
-                <th>@Html.DisplayNameFor(model => model.Ticket[0].Familienaam)</th>
-            </tr>
-            @foreach (var item in Model.Ticket)
-            {
+    @if (Model.Ticket != null)
+    {
+        <form asp-action="Payment" class="form-control mb-3">
+            <table>
                 <tr>
-                    <td>@Html.DisplayFor(modelItem => item.WedstrijdId)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Betaald)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Voornaam)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Familienaam)</td>
-                    <td>
-                        <a asp-action="Delete" asp-route-wedstrijdId="@item.WedstrijdId">
-                            <img src="~/Images/delete.png" style="width:25px;height:25px" />
-                        </a>
-                    </td>
+                    <th>@Html.DisplayNameFor(model => model.Ticket[0].WedstrijdId)</th>
+                    <th>@Html.DisplayNameFor(model => model.Ticket[0].Betaald)</th>
+                    <th>@Html.DisplayNameFor(model => model.Ticket[0].Voornaam)</th>
+                    <th>@Html.DisplayNameFor(model => model.Ticket[0].Familienaam)</th>
                 </tr>
-            }
-        </table>
-    </form>
-}
-else if (Model.Subscription != null && Model.Subscription.Any())
-{
-    <form asp-action="Payment" class="form-control mb-3">
-        <table>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.Subscription[0].ClubId)</th>
-                <th>@Html.DisplayNameFor(model => model.Subscription[0].Betaald)</th>
-                <th>@Html.DisplayNameFor(model => model.Subscription[0].Voornaam)</th>
-                <th>@Html.DisplayNameFor(model => model.Subscription[0].Familienaam)</th>
-            </tr>
-            @foreach (var item in Model.Subscription)
-            {
+                @foreach (var item in Model.Ticket)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.WedstrijdId)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Betaald)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Voornaam)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Familienaam)</td>
+                        <td>
+                            <a asp-action="Delete" asp-route-wedstrijdId="@item.WedstrijdId">
+                                <img src="~/Images/delete.png" style="width:25px;height:25px" />
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </form>
+    }
+    @if (Model.Subscription != null)
+    {
+        <form asp-action="Payment" class="form-control mb-3">
+            <table>
                 <tr>
-                    <td>@Html.DisplayFor(modelItem => item.ClubId)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Betaald)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Voornaam)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Familienaam)</td>
-                    <td>
-                        <a asp-action="Delete" asp-route-clubId="@item.ClubId">
-                            <img src="~/Images/delete.png" style="width:25px;height:25px" />
-                        </a>
-                    </td>
+                    <th>@Html.DisplayNameFor(model => model.Subscription[0].ClubId)</th>
+                    <th>@Html.DisplayNameFor(model => model.Subscription[0].Betaald)</th>
+                    <th>@Html.DisplayNameFor(model => model.Subscription[0].Voornaam)</th>
+                    <th>@Html.DisplayNameFor(model => model.Subscription[0].Familienaam)</th>
                 </tr>
-            }
-        </table>
-    </form>
+                @foreach (var item in Model.Subscription)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.ClubId)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Betaald)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Voornaam)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Familienaam)</td>
+                        <td>
+                            <a asp-action="DeleteSubscription" asp-route-clubId="@item.ClubId">
+                                <img src="~/Images/delete.png" style="width:25px;height:25px" />
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </form>
+    }
 } else
 {
     @Html.Raw("Your shopping cart is empty at the moment")

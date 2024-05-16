@@ -18,7 +18,6 @@ namespace TicketThijsMateo.Controllers
             if (cartList == null)
             {
                 cartList = new ShoppingCartVM();
-                cartList.Ticket = new List<TicketVM>();
                 HttpContext.Session.SetObject("ShoppingCart", cartList);
             }
 
@@ -44,6 +43,35 @@ namespace TicketThijsMateo.Controllers
             if (itemToRemove != null)
             {
                 cartList.Ticket.Remove(itemToRemove);
+                HttpContext.Session.SetObject("ShoppingCart", cartList);
+            }
+            else
+            {
+                return NotFound("Item not found in the shopping cart.");
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult DeleteSubscription(int? clubId)
+        {
+            if (clubId == null)
+            {
+                return BadRequest("Invalid item id.");
+            }
+
+            ShoppingCartVM? cartList = HttpContext.Session.GetObject<ShoppingCartVM>("ShoppingCart");
+
+            if (cartList == null)
+            {
+                return NotFound("Shopping cart not found.");
+            }
+
+            var itemToRemove = cartList.Subscription.FirstOrDefault(t => t.ClubId == clubId);
+
+            if (itemToRemove != null)
+            {
+                cartList.Subscription.Remove(itemToRemove);
                 HttpContext.Session.SetObject("ShoppingCart", cartList);
             }
             else
