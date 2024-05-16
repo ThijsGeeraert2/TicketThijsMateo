@@ -46,7 +46,8 @@ namespace TicketThijsMateo.Controllers
             {
                 Soortplaatsen = new SelectList(await soortplaatsService.GetAllSoortPlaatsenByStadiumId(club.Stadium.Id)
                   , "Id", "Naam"),
-                ClubId = club.Id,
+                ClubId = (int)id,
+                ClubNaam = club.Naam,
             };
 
 
