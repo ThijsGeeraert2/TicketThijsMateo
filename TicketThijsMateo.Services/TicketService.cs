@@ -24,9 +24,9 @@ namespace TicketThijsMateo.Services
             await _ticketDAO.AddAsync(entity);
         }
 
-        public Task DeleteAsync(Ticket entity)
+        public async Task DeleteAsync(Ticket entity)
         {
-            throw new NotImplementedException();
+            await _ticketDAO.DeleteAsync(entity);
         }
 
         public async Task<Ticket?> FindByIdAsync(int Id)

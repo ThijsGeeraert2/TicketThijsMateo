@@ -35,14 +35,34 @@ namespace TicketThijsMateo.Repositories
             }
         }
 
-        public Task DeleteAsync(Ticket entity)
+        public async Task DeleteAsync(Ticket entity)
         {
-            throw new NotImplementedException();
+            dbContext.Remove(entity).State = EntityState.Deleted;
+
+            try
+            {
+                await dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error Dao tickets");
+            }
+
         }
 
         public async Task<Ticket?> FindByIdAsync(int Id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await dbContext.Tickets.Where(b => b.Id == Id).FirstOrDefaultAsync();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("error in DAO");
+                throw;
+
+            }
         }
 
         public Task<IEnumerable<Ticket>?> GetHotelsNearStadium(string stadiumName)

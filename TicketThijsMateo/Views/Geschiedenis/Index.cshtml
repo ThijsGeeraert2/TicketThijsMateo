@@ -69,7 +69,8 @@
 
                                 @if ((ticket.WedstrijdDatum - DateTime.Now).TotalDays > 7)
                                 {
-                                    <form method="post" asp-action="Delete" asp-route-id="@ticket.Ticket.Id" onsubmit="return confirm('Are you sure you want to delete this ticket?');">
+                                    <form asp-action="Delete" asp-route-id="@ticket.Ticket.Id">
+                                        @* onsubmit="return confirm('Are you sure you want to delete this ticket?') *@
                                         <button type="submit" class="btn btn-primary">Annuleer</button>
                                     </form>
 
