@@ -54,7 +54,7 @@
                 @Html.ActionLink("Delete", "Delete", new { id=item.Biernr }) *@
 
 
-                    @if ((item.Datum - DateTime.Now).Value.TotalDays < 30)
+                    @if ((item.Datum - DateTime.Now).Value.TotalDays < 30 && DateTime.Now !< item.Datum)
                     {
                         <a asp-action="Create" asp-route-id="@item.Id">
                             <button class="btn btn-primary">Buy Ticket</button>
