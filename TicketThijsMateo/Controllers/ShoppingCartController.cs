@@ -5,6 +5,7 @@ using System.IO;
 using TicketThijsMateo.Domains.Context;
 using TicketThijsMateo.Domains.Entities;
 using TicketThijsMateo.Extensions;
+using TicketThijsMateo.Repositories;
 using TicketThijsMateo.Services;
 using TicketThijsMateo.Services.Interfaces;
 using TicketThijsMateo.util.Mail.Interfaces;
@@ -184,5 +185,36 @@ namespace TicketThijsMateo.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public  IActionResult AddTicket(int? ticketId)
+        {
+            if (ticketId == null)
+            {
+                return BadRequest("Invalid item id.");
+            }
+
+            ShoppingCartVM? cartList = HttpContext.Session.GetObject<ShoppingCartVM>("ShoppingCart");
+
+            if (cartList == null)
+            {
+                return NotFound("Shopping cart not found.");
+            }
+
+            var newItem  = cartList.Ticket.FirstOrDefault(t => t.TicketId == ticketId);
+
+            if (newItem != null)
+            {
+                cartList.Ticket.Add(newItem);
+                HttpContext.Session.SetObject("ShoppingCart", cartList);
+
+            }
+            else
+            {
+                return NotFound("Item doesnt exist");
+            }
+            return RedirectToAction("Index");
+
+        }
+
     }
 }
