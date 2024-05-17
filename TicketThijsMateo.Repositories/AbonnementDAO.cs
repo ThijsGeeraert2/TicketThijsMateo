@@ -100,6 +100,11 @@ namespace TicketThijsMateo.Repositories
                 throw new Exception($"Error retrieving tickets for UserID {Id}", ex);
             }
         }
+
+        public async Task<Abonnementen?> FindZitplaatsByIdAsync(int Id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

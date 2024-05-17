@@ -73,5 +73,10 @@ namespace TicketThijsMateo.Services
         {
             return await _ticketDAO.GetTicketsByUserID(Id);
         }
+
+        public async Task<Abonnementen?> FindZitplaatsByIdAsync(int Id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

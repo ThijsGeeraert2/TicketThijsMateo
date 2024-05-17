@@ -19,7 +19,7 @@ namespace TicketThijsMateo.Repositories.Interfaces
         Task<IEnumerable<T>?> GetAllSoortPlaatsenByStadiumId(int Id);
         Task<int> GetLastZetelNummer(int Id);
         Task<IEnumerable<T>?> GetTicketsByUserID(string Id);
-
+        Task<T?> FindZitplaatsByIdAsync(int Id);
 
 
     }

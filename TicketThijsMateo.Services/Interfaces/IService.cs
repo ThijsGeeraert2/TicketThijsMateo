@@ -24,6 +24,7 @@ namespace TicketThijsMateo.Services.Interfaces
         Task<int> GetLastZetelNummer(int Id);
         Task<IEnumerable<T>?> GetTicketsByUserID(string Id);
 
+        Task<T?> FindZitplaatsByIdAsync(int Id);
     }
 
 

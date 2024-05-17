@@ -64,7 +64,7 @@ namespace TicketThijsMateo.Controllers
                         UitPloegNaam = uitPloeg.Naam,
                         WedstrijdDatum = wedstrijd.Datum
                     };
-                    
+
 
                     ticketViewModels.Add(ticketGeschiedenisVM);
                 }
@@ -78,6 +78,32 @@ namespace TicketThijsMateo.Controllers
                 return View(viewModel);
             }
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                var ticket = await _ticketService.FindByIdAsync(id);
+                if (ticket == null)
+                {
+                    return NotFound();
+                }
+
+                Zitplaatsen zitplaats = await _zitplaatsenService.FindZitplaatsByIdAsync((int)ticket.ZitplaatsId);
+                await _zitplaatsenService.DeleteAsync(zitplaats);
+
+                await _ticketService.DeleteAsync(ticket);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Call the administrator");
+                // Handle any errors here
+                return RedirectToAction("Index"); // or any other appropriate action
+            }
         }
     }
 }
