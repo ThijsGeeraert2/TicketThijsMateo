@@ -84,6 +84,11 @@ namespace TicketThijsMateo.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public async Task<IEnumerable<Abonnementen>?> GetTicketsByUserID(string Id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

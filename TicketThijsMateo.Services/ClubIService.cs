@@ -63,5 +63,10 @@ namespace TicketThijsMateo.Services
         {
             throw new NotImplementedException();
         }
+
+        public async Task<IEnumerable<Club>?> GetTicketsByUserID(string Id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -63,5 +63,10 @@ namespace TicketThijsMateo.Services
         {
             return await _zitPlaatsDAO.GetLastZetelNummer(Id);
         }
+
+        public async Task<IEnumerable<Zitplaatsen>?> GetTicketsByUserID(string Id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

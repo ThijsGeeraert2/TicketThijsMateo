@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TicketThijsMateo.Domains.Entities;
 
 namespace TicketThijsMateo.Repositories.Interfaces
 {
@@ -17,7 +18,9 @@ namespace TicketThijsMateo.Repositories.Interfaces
         Task<IEnumerable<T>> GetHotelsNearStadium(string stadiumName);
         Task<IEnumerable<T>?> GetAllSoortPlaatsenByStadiumId(int Id);
         Task<int> GetLastZetelNummer(int Id);
-       
+        Task<IEnumerable<T>?> GetTicketsByUserID(string Id);
+
+
 
     }
 
