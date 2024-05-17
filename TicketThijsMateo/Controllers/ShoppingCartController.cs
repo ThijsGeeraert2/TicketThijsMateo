@@ -18,7 +18,7 @@ namespace TicketThijsMateo.Controllers
         private IService<Ticket> _ticketService;
         private IService<Zitplaatsen> _zitPlaatsService;
         private IService<Soortplaatsen> _soortPlaatsenService;
-        private IService<AbonnementService> _abonnementService;
+        private IService<Abonnementen> _abonnementService;
         private readonly IMapper _mapper;
 
         private readonly IEmailSend _emailSend;
@@ -27,7 +27,7 @@ namespace TicketThijsMateo.Controllers
 
         private readonly UserManager<IdentityUser> _userManager;
 
-        public ShoppingCartController(IMapper mapper, IService<Ticket> ticketService, IService<Zitplaatsen> zitplaatsService, IService<Soortplaatsen> soortPlaatsService, IService<AbonnementService> abonnementService, IEmailSend emailSend, ICreatePDF createPDF, IWebHostEnvironment hostingEnvironment, UserManager<IdentityUser> userManager)
+        public ShoppingCartController(IMapper mapper, IService<Ticket> ticketService, IService<Zitplaatsen> zitplaatsService, IService<Soortplaatsen> soortPlaatsService, IService<Abonnementen> abonnementService, IEmailSend emailSend, ICreatePDF createPDF, IWebHostEnvironment hostingEnvironment, UserManager<IdentityUser> userManager)
         {
             _mapper = mapper;
             _ticketService = ticketService;
@@ -63,9 +63,9 @@ namespace TicketThijsMateo.Controllers
 
             var currentUser = await _userManager.GetUserAsync(User);
 
-            //try
-            //{
-            List<TicketVM> ticketsVM = cartList.Ticket;
+            try
+            {
+                List<TicketVM> ticketsVM = cartList.Ticket;
             List<SubscriptionVM> subscriptionsVM = cartList.Subscription;
 
             foreach (var ticketVM in ticketsVM)
@@ -171,12 +171,12 @@ namespace TicketThijsMateo.Controllers
             HttpContext.Session.Remove("ShoppingCart");
 
             return View("Thanks");
-            //}
-            //catch (Exception ex)
-            //{
-            //    ViewBag.Error = $"Failed to send email: {ex.Message}";
-            //    return View();
-            //}
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = $"Failed to send email: {ex.Message}";
+                return View();
+            }
         }
 
 
