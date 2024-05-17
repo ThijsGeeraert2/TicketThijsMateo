@@ -18,18 +18,26 @@
         <form asp-action="Payment" class="form-control mb-3">
             <table>
                 <tr>
-                    <th>@Html.DisplayNameFor(model => model.Ticket[0].WedstrijdId)</th>
                     <th>@Html.DisplayNameFor(model => model.Ticket[0].Betaald)</th>
                     <th>@Html.DisplayNameFor(model => model.Ticket[0].Voornaam)</th>
                     <th>@Html.DisplayNameFor(model => model.Ticket[0].Familienaam)</th>
+                    <th>@Html.DisplayNameFor(model => model.Ticket[0].ThuisPloeg)</th>
+                    <th>@Html.DisplayNameFor(model => model.Ticket[0].UitPloeg)</th>
+                    <th>@Html.DisplayNameFor(model => model.Ticket[0].Prijs)</th>
+
+
                 </tr>
                 @foreach (var item in Model.Ticket)
                 {
                     <tr>
-                        <td>@Html.DisplayFor(modelItem => item.WedstrijdId)</td>
                         <td>@Html.DisplayFor(modelItem => item.Betaald)</td>
                         <td>@Html.DisplayFor(modelItem => item.Voornaam)</td>
                         <td>@Html.DisplayFor(modelItem => item.Familienaam)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ThuisPloeg)</td>
+                        <td>@Html.DisplayFor(modelItem => item.UitPloeg)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Prijs)</td>
+
+
                         <td>
                             <a asp-action="Delete" asp-route-wedstrijdId="@item.WedstrijdId">
                                 <img src="~/Images/delete.png" style="width:25px;height:25px" />
