@@ -27,6 +27,16 @@
                 <input asp-for="wedstrijdId" class="form-control" />
                 <span asp-validation-for="wedstrijdId" class="text-danger"></span>
             </div>
+            <div class="form-group" hidden>
+                <label asp-for="ThuisPloeg" class="control-label"></label>
+                <input asp-for="ThuisPloeg" class="form-control" />
+                <span asp-validation-for="ThuisPloeg" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="UitPloeg" class="control-label"></label>
+                <input asp-for="UitPloeg" class="form-control" />
+                <span asp-validation-for="UitPloeg" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="Soortplaatsnr" class="control-label"></label>
                 @*    <input asp-for="Brouwernr" class="form-control" />*@

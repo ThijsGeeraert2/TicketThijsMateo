@@ -54,6 +54,8 @@ namespace TicketThijsMateo.Controllers
                 Soortplaatsen = new SelectList(await soortplaatsService.GetAllSoortPlaatsenByStadiumId(wedstrijd.Stadium.Id)
                   , "Id", "Naam"),
                 wedstrijdId = wedstrijd.Id,
+                ThuisPloeg = wedstrijd.ThuisPloeg.Naam,
+                UitPloeg = wedstrijd.UitPloeg.Naam
                
             };
 
@@ -69,6 +71,8 @@ namespace TicketThijsMateo.Controllers
 
             if (ticketCreateVM != null)
             {
+
+                var soortplaats = await soortplaatsService.FindByIdAsync(ticketCreateVM.Soortplaatsnr);
                 TicketVM item = new TicketVM
                 {
                     Betaald = false,
@@ -76,7 +80,9 @@ namespace TicketThijsMateo.Controllers
                     Familienaam = ticketCreateVM.Naam,
                     WedstrijdId = ticketCreateVM.wedstrijdId,
                     SoortplaatsNr = ticketCreateVM.Soortplaatsnr,
-                    
+                    ThuisPloeg = ticketCreateVM.ThuisPloeg,
+                    UitPloeg = ticketCreateVM.UitPloeg,
+                    Prijs = soortplaats.Tarief
                 };
 
                 ShoppingCartVM? shopping;
