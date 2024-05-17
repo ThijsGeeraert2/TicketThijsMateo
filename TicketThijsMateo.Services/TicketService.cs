@@ -79,5 +79,9 @@ namespace TicketThijsMateo.Services
             throw new NotImplementedException();
         }
 
+        public async Task<IEnumerable<Ticket>?> GetAllByWedstrijdId(int Id)
+        {
+            return await _ticketDAO.GetAllByWedstrijdId(Id);
+        }
     }
 }

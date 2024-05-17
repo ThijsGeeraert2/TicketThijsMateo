@@ -16,7 +16,8 @@ namespace TicketThijsMateo.Repositories.Interfaces
         Task<T?> FindByIdAsync(int Id);
         Task<IEnumerable<T>?> GetAllWedstrijdenBetweenClubs(int thuisploegId, int uitploegId);
         Task<IEnumerable<T>> GetHotelsNearStadium(string stadiumName);
-        Task<IEnumerable<T>?> GetAllSoortPlaatsenByStadiumId(int Id);
+        Task<IEnumerable<T>?> GetAllSoortPlaatsenByStadiumId(int Id); 
+        Task<IEnumerable<T>?> GetAllByWedstrijdId(int Id);
         Task<int> GetLastZetelNummer(int Id);
         Task<IEnumerable<T>?> GetTicketsByUserID(string Id);
         Task<T?> FindZitplaatsByIdAsync(int Id);
