@@ -23,14 +23,18 @@ namespace TicketThijsMateo.Controllers
             _stadiumService = stadiumService;
         }
 
-        public async Task<IActionResult> Index(int id)  // add using System.Threading.Tasks;
+        public async Task<IActionResult> Index(int id)
         {
             Stadium stadium = await _stadiumService.FindByIdAsync(id);
-            var list = await _hotelService.GetHotelsNearStadium(stadium.Adres);
-            List<HotelVM> listVM = _mapper.Map<List<HotelVM>>(list);
+            IEnumerable<Hotel> list = null;
+
+            if (stadium != null)
+            {
+                list = await _hotelService.GetHotelsNearStadium(stadium.Adres);
+            }
+
+            List<HotelVM> listVM = _mapper.Map<List<HotelVM>>(list ?? new List<Hotel>());
             return View(listVM);
-
-
         }
     }
 }

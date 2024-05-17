@@ -22,6 +22,9 @@ namespace TicketThijsMateo.AutoMapper
             CreateMap<Stadium, StadiumVM>();
             CreateMap<StadiumVM, Stadium>();
 
+            CreateMap<AspNetUser, UserVM>();
+            CreateMap<UserVM, AspNetUser>();
+
             CreateMap<Hotel, HotelVM>();
             CreateMap<HotelVM, Hotel>();
 
