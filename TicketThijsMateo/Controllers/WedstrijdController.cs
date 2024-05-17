@@ -75,6 +75,7 @@ namespace TicketThijsMateo.Controllers
                     Voornaam = ticketCreateVM.Voornaam,
                     Familienaam = ticketCreateVM.Naam,
                     WedstrijdId = ticketCreateVM.wedstrijdId,
+                    SoortplaatsNr = ticketCreateVM.Soortplaatsnr,
                     
                 };
 

@@ -17,6 +17,8 @@
         public bool Betaald { get; set; }
         public int PersoonId { get; set; }
 
+        public int SoortplaatsNr { get; set; }
+
         public int ZitplaatsId { get; set; }
 
         public string? Voornaam { get; set; }
