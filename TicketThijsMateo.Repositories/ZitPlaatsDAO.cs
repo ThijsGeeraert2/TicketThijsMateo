@@ -53,6 +53,21 @@ namespace TicketThijsMateo.Repositories
             }
         }
 
+        public async Task<Zitplaatsen?> FindByZitplaatsIdAsync(int Id)
+        {
+            try
+            {
+                return await _ticketDBContext.Zitplaatsens.Where(b => b.Id == Id)
+                    .FirstOrDefaultAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("error in DAO");
+                throw;
+
+            }
+        }
+
         public async Task<IEnumerable<Zitplaatsen>> GetAllAsync()
         {
             return await _ticketDBContext.Zitplaatsens.ToListAsync();

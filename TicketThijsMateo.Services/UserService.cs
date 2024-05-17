@@ -67,5 +67,10 @@ namespace TicketThijsMateo.Services
         {
             throw new NotImplementedException();
         }
+
+        public Task<AspNetUser?> FindByZitplaatsIdAsync(int Id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

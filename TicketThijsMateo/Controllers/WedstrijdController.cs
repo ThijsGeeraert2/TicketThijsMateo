@@ -18,6 +18,8 @@ namespace TicketThijsMateo.Controllers
         private IService<Club> clubService;
 
         private IService<Ticket> ticketService;
+        private IService<Zitplaatsen> zitplaatsService;
+
 
         public IService<Soortplaatsen> soortplaatsService;
 
@@ -25,13 +27,16 @@ namespace TicketThijsMateo.Controllers
 
         
 
-        public WedstrijdController(IMapper mapper, IService<Wedstrijden> wService, IService<Club> cService, IService<Soortplaatsen> sService, IService<Ticket> tService)
+        public WedstrijdController(IMapper mapper, IService<Wedstrijden> wService, IService<Club> cService,
+            IService<Soortplaatsen> sService, IService<Ticket> tService, IService<Zitplaatsen> zService
+            )
         {
             _mapper = mapper;
             wedstrijdService = wService;
             clubService = cService;
             soortplaatsService = sService;
             ticketService = tService;
+            zitplaatsService = zService;
 
 
         }
@@ -81,7 +86,22 @@ namespace TicketThijsMateo.Controllers
 
                 var ticketsVoorWedstrijd = await ticketService.GetAllByWedstrijdId(ticketCreateVM.wedstrijdId);
 
-            
+                var aantalZitjesInSoortplaats = 0;
+                foreach (var ticket in ticketsVoorWedstrijd)
+                {
+                    var zitplaats = await zitplaatsService.FindByZitplaatsIdAsync((int)ticket.ZitplaatsId);
+                    if (zitplaats.SoortplaatsId == ticketCreateVM.Soortplaatsnr)
+                    {
+                        aantalZitjesInSoortplaats++;
+                    }
+                }
+
+
+                if (aantalZitjesInSoortplaats >= soortplaats.Capaciteit)
+                {
+                    return NotFound("Soortplaats is uitverkocht");
+                }
+              
 
                 TicketVM item = new TicketVM
                 {

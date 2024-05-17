@@ -89,6 +89,12 @@ namespace TicketThijsMateo.Repositories
         {
             throw new NotImplementedException();
         }
+
+   
+        Task<Abonnementen?> IDAO<Abonnementen>.FindByZitplaatsIdAsync(int Id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 
