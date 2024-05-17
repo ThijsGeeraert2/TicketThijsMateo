@@ -19,9 +19,6 @@
                 @Html.DisplayNameFor(model => model.Datum)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StadiumId)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Stadium)
             </th>
             <th>
@@ -41,9 +38,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Datum)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StadiumId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Stadium)
@@ -72,6 +66,13 @@
                     }
 
                 </td>
+
+                <td>
+                    <a asp-action="Details" asp-controller="Stadia" asp-route-id="@item.StadiumId">
+                        <button class="btn btn-primary">Bekijk Stadium</button>
+                    </a>
+                </td>
+             
         </tr>
 }
     </tbody>
