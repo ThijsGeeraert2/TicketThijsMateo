@@ -35,6 +35,15 @@
                                 <img src="~/Images/delete.png" style="width:25px;height:25px" />
                             </a>
                         </td>
+                        @if(Model.Ticket.Count < 4)
+                        {
+                            <td>
+                                <a asp-action="AddTicket" asp-route-ticketId="@item.TicketId">
+                                    <img src="~/Images/add-to-cart.png" style="width:25px;height:25px" />
+                                </a>
+                            </td>
+                        }
+                       
                     </tr>
                 }
             </table>
