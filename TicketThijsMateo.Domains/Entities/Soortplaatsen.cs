@@ -19,8 +19,8 @@ public partial class Soortplaatsen
 
     public virtual ICollection<Zitplaatsen> Zitplaatsens { get; set; } = new List<Zitplaatsen>();
 
-    public static implicit operator Soortplaatsen(Task<Soortplaatsen?> v)
-    {
-        throw new NotImplementedException();
-    }
+    //public static implicit operator Soortplaatsen(Task<Soortplaatsen?> v)
+    //{
+    //    throw new NotImplementedException();
+    //}
 }

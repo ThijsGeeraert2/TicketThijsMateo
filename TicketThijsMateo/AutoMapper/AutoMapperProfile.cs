@@ -33,6 +33,8 @@ namespace TicketThijsMateo.AutoMapper
             CreateMap<Zitplaatsen, ZitPlaatsVM>();
             CreateMap<ZitPlaatsVM, Zitplaatsen>();
 
+            CreateMap<SubscriptionVM, Abonnementen>();
+
         }
     }
 }
