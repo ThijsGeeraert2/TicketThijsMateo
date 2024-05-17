@@ -15,7 +15,8 @@ namespace TicketThijsMateo.ViewModels
         public DateTime? AankoopDatum { get; set; }
 
         public int WedstrijdId { get; set; }
-
+        public string? ThuisPloeg { get; set; }
+        public string? UitPloeg { get; set; }
         public bool Betaald { get; set; }
         public int PersoonId { get; set; }
         public int SoortplaatsNr { get; set; }
