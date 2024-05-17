@@ -81,7 +81,7 @@ namespace TicketThijsMateo.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<AspNetUser?> FindByZitplaatsIdAsync(int Id)
+        public async Task<AspNetUser?> FindByZitplaatsIdAsync(int Id)
         {
             throw new NotImplementedException();
         }

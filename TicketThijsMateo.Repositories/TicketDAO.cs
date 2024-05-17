@@ -103,7 +103,7 @@ namespace TicketThijsMateo.Repositories
             }
         }
 
-        public Task<Ticket?> FindByZitplaatsIdAsync(int Id)
+        public async Task<Ticket?> FindByZitplaatsIdAsync(int Id)
         {
             throw new NotImplementedException();
         }

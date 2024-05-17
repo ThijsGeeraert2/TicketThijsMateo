@@ -90,7 +90,7 @@ namespace TicketThijsMateo.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Abonnementen?> FindByZitplaatsIdAsync(int Id)
+        public async Task<Abonnementen?> FindByZitplaatsIdAsync(int Id)
         {
             throw new NotImplementedException();
         }
