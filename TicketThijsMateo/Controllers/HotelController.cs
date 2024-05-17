@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using TicketThijsMateo.Domains.Context;
+using TicketThijsMateo.Domains.Entities;
 using TicketThijsMateo.Services;
 using TicketThijsMateo.Services.Interfaces;
 using TicketThijsMateo.ViewModels;

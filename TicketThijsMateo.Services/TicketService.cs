@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TicketThijsMateo.Domains.Context;
+using TicketThijsMateo.Domains.Entities;
 using TicketThijsMateo.Repositories.Interfaces;
 using TicketThijsMateo.Services.Interfaces;
 
@@ -54,7 +55,7 @@ namespace TicketThijsMateo.Services
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Wedstrijd>?> GetAllSoortPlaatsenByStadiumId(int Id)
+        public Task<IEnumerable<Wedstrijden>?> GetAllSoortPlaatsenByStadiumId(int Id)
         {
             throw new NotImplementedException();
         }

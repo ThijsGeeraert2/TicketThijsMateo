@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
 using TicketThijsMateo.Domains.Context;
+using TicketThijsMateo.Domains.Entities;
 using TicketThijsMateo.Extensions;
 using TicketThijsMateo.Services;
 using TicketThijsMateo.Services.Interfaces;

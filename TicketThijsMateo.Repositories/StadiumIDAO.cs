@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TicketThijsMateo.Domains.Context;
+using TicketThijsMateo.Domains.Data;
+using TicketThijsMateo.Domains.Entities;
 using TicketThijsMateo.Repositories.Interfaces;
 
 namespace TicketThijsMateo.Repositories

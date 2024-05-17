@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using TicketThijsMateo.Domains.Context;
+using TicketThijsMateo.Domains.Entities;
 using TicketThijsMateo.Extensions;
 using TicketThijsMateo.Repositories;
 using TicketThijsMateo.Services;
@@ -12,17 +13,17 @@ namespace TicketThijsMateo.Controllers
 {
     public class WedstrijdController : Controller
     {
-        private IService<Wedstrijd> wedstrijdService;
+        private IService<Wedstrijden> wedstrijdService;
 
         private IService<Club> clubService;
 
-        public IService<Soortplaats> soortplaatsService;
+        public IService<Soortplaatsen> soortplaatsService;
 
         private readonly IMapper _mapper;
 
         
 
-        public WedstrijdController(IMapper mapper, IService<Wedstrijd> wService, IService<Club> cService, IService<Soortplaats> sService)
+        public WedstrijdController(IMapper mapper, IService<Wedstrijden> wService, IService<Club> cService, IService<Soortplaatsen> sService)
         {
             _mapper = mapper;
             wedstrijdService = wService;
@@ -46,7 +47,7 @@ namespace TicketThijsMateo.Controllers
                 return NotFound();
             }
 
-            Wedstrijd? wedstrijd = await wedstrijdService.FindByIdAsync(Convert.ToInt32(id));
+            Wedstrijden? wedstrijd = await wedstrijdService.FindByIdAsync(Convert.ToInt32(id));
 
             var ticketCreate = new TicketCreateVM()
             {

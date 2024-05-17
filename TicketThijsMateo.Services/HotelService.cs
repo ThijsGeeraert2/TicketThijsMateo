@@ -4,9 +4,9 @@ using System.Collections;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using SerpApi;
-using TicketThijsMateo.Domains.Context;
 using TicketThijsMateo.Services.Interfaces;
-using TicketThijsMateo.Repositories.Interfaces; // If needed for your application
+using TicketThijsMateo.Repositories.Interfaces;
+using TicketThijsMateo.Domains.Context; // If needed for your application
 
 namespace TicketThijsMateo.Services
 {

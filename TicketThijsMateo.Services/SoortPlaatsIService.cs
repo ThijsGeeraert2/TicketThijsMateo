@@ -4,58 +4,59 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TicketThijsMateo.Domains.Context;
+using TicketThijsMateo.Domains.Entities;
 using TicketThijsMateo.Repositories;
 using TicketThijsMateo.Repositories.Interfaces;
 using TicketThijsMateo.Services.Interfaces;
 
 namespace TicketThijsMateo.Services
 {
-    public class SoortPlaatsIService : IService<Soortplaats>
+    public class SoortPlaatsIService : IService<Soortplaatsen>
     {
-        private IDAO<Soortplaats> _soortplaatsDAO;
+        private IDAO<Soortplaatsen> _soortplaatsDAO;
 
-        public SoortPlaatsIService(IDAO<Soortplaats> soortplaatsDAO)
+        public SoortPlaatsIService(IDAO<Soortplaatsen> soortplaatsDAO)
         {
             _soortplaatsDAO = soortplaatsDAO;
         }
-        public Task AddAsync(Soortplaats entity)
+        public Task AddAsync(Soortplaatsen entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task DeleteAsync(Soortplaats entity)
+        public Task DeleteAsync(Soortplaatsen entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Soortplaats?> FindByIdAsync(int Id)
+        public Task<Soortplaatsen?> FindByIdAsync(int Id)
         {
             throw new NotImplementedException();
 
         }
 
-        public async Task<IEnumerable<Soortplaats>> GetAllAsync()
+        public async Task<IEnumerable<Soortplaatsen>> GetAllAsync()
         {
             return await _soortplaatsDAO.GetAllAsync();
 
         }
 
-        public async Task<IEnumerable<Soortplaats>?> GetAllSoortPlaatsenByStadiumId(int Id)
+        public async Task<IEnumerable<Soortplaatsen>?> GetAllSoortPlaatsenByStadiumId(int Id)
         {
             return await _soortplaatsDAO.GetAllSoortPlaatsenByStadiumId(Id);
         }
 
-        public Task<IEnumerable<Soortplaats>?> GetAllWedstrijdenBetweenClubs(int thuisPloegId, int uitPloegId)
+        public Task<IEnumerable<Soortplaatsen>?> GetAllWedstrijdenBetweenClubs(int thuisPloegId, int uitPloegId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Soortplaats>?> GetHotelsNearStadium(string stadiumName)
+        public Task<IEnumerable<Soortplaatsen>?> GetHotelsNearStadium(string stadiumName)
         {
             throw new NotImplementedException();
         }
 
-        public Task UpdateAsync(Soortplaats entity)
+        public Task UpdateAsync(Soortplaatsen entity)
         {
             throw new NotImplementedException();
         }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using TicketThijsMateo.Domains.Context;
+using TicketThijsMateo.Domains.Entities;
 using TicketThijsMateo.Extensions;
 using TicketThijsMateo.Services;
 using TicketThijsMateo.Services.Interfaces;
@@ -12,12 +13,12 @@ namespace TicketThijsMateo.Controllers
     public class ClubController : Controller
     {
         private IService<Club> clubService;
-        private IService<Soortplaats> soortplaatsService;
+        private IService<Soortplaatsen> soortplaatsService;
 
 
         private readonly IMapper _mapper;
 
-        public ClubController(IMapper mapper, IService<Club> clubservice, IService<Soortplaats> soortpltsService)
+        public ClubController(IMapper mapper, IService<Club> clubservice, IService<Soortplaatsen> soortpltsService)
         {
             _mapper = mapper;
             clubService = clubservice;

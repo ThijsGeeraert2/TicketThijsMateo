@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
-using TicketThijsMateo.Domains.Context;
+using TicketThijsMateo.Domains.Entities;
 using SerpApi;
 using Newtonsoft.Json.Linq;
 using TicketThijsMateo.Repositories.Interfaces;
+using TicketThijsMateo.Domains.Context;
 
 namespace TicketThijsMateo.Repositories
 {
