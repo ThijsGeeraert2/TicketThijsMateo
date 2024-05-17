@@ -77,9 +77,9 @@
     {
         <h5>You are logged in </h5>
 
-        <button class="btn">
-            <a asp-controller="ShoppingCart" asp-action="Index"> Bestel</a>
-        </button>
+        <form method="post" asp-controller="ShoppingCart" asp-action="Checkout">
+            <button type="submit" class="btn">Bestel</button>
+        </form>
     }
     else
     {

@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TicketThijsMateo.Domains.Context;
+using TicketThijsMateo.Domains.Data;
 
 #nullable disable
 

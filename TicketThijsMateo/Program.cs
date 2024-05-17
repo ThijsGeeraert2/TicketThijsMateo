@@ -14,6 +14,8 @@ using TicketThijsMateo.util.Mail;
 using TicketThijsMateo.util.Mail.Interfaces;
 using TicketThijsMateo.util.PDF.Interfaces;
 using TicketThijsMateo.util.PDF;
+using TicketThijsMateo.Domains.Data;
+using TicketThijsMateo.Domains.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -68,14 +70,20 @@ builder.Services.AddTransient<IDAO<Club>, ClubIDAO>();
 builder.Services.AddTransient<IDAO<Stadium>, StadiumIDAO>();
 builder.Services.AddTransient<IService<Stadium>, StadiumIService>();
 
-builder.Services.AddTransient<IDAO<Wedstrijd>, WedstrijdIDAO>();
-builder.Services.AddTransient<IService<Wedstrijd>, WedstrijdIService>();
+builder.Services.AddTransient<IDAO<Wedstrijden>, WedstrijdIDAO>();
+builder.Services.AddTransient<IService<Wedstrijden>, WedstrijdIService>();
 
-builder.Services.AddTransient<IDAO<Soortplaats>, SoortPlaatsIDAO>();
-builder.Services.AddTransient<IService<Soortplaats>, SoortPlaatsIService>();
+builder.Services.AddTransient<IDAO<Soortplaatsen>, SoortPlaatsIDAO>();
+builder.Services.AddTransient<IService<Soortplaatsen>, SoortPlaatsIService>();
 
 builder.Services.AddTransient<IDAO<Hotel>, HotelDAO>();
 builder.Services.AddTransient<IService<Hotel>, HotelService>();
+
+builder.Services.AddTransient<IDAO<Ticket>, TicketDAO>();
+builder.Services.AddTransient<IService<Ticket>, TicketService>();
+
+builder.Services.AddTransient<IDAO<AspNetUser>, UserDAO>();
+builder.Services.AddTransient<IService<AspNetUser>, UserService>();
 
 
 // SwaggerGen produces JSON schema documents that power Swagger UI.By default, these are served up under / swagger

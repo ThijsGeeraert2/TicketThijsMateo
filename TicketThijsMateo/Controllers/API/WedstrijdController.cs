@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using TicketThijsMateo.Domains.Context;
+using TicketThijsMateo.Domains.Entities;
 using TicketThijsMateo.Services.Interfaces;
 using TicketThijsMateo.ViewModels;
 
@@ -10,10 +11,10 @@ namespace TicketThijsMateo.Controllers.API
     [ApiController]
     public class WedstrijdController : ControllerBase
     {
-        private IService<Wedstrijd> _wedstrijdService;
+        private IService<Wedstrijden> _wedstrijdService;
         private readonly IMapper _mapper;
 
-        public WedstrijdController(IMapper mapper, IService<Wedstrijd> service)
+        public WedstrijdController(IMapper mapper, IService<Wedstrijden> service)
         {
             _wedstrijdService = service;
             _mapper = mapper;

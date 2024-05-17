@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TicketThijsMateo.Domains.Context;
+using TicketThijsMateo.Domains.Entities;
 using TicketThijsMateo.util.Mail.Interfaces;
 using TicketThijsMateo.util.PDF.Interfaces;
 using TicketThijsMateo.ViewModels;
@@ -35,7 +35,7 @@ namespace TicketThijsMateo.Controllers
                 string pdfFile = "ticket" + DateTime.Now.Year;
                 var pdfFileName = $"{pdfFile}_{Guid.NewGuid()}.pdf";
                 var tickets = new List<Ticket> {
-                        new Ticket { Id=1, AankoopDatum=DateTime.Now, betaald = false, Voornaam="Mateo", Familienaam="Gheeraert", UserId = "1234", Wedstrijd=null, Zitplaats=null  },
+                        new Ticket { Id=1, AankoopDatum=DateTime.Now, Betaald = false, Voornaam="Mateo", Familienaam="Gheeraert", UserId = "1234", Wedstrijd=null, Zitplaats=null  },
                     };
 
                 string logoPath = Path.Combine(_hostingEnvironment.WebRootPath, "images", "proleague.png");

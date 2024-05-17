@@ -1,10 +1,6 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using TicketThijsMateo.Domains.Context;
 using TicketThijsMateo.Domains.Entities;
-using TicketThijsMateo.Services;
 using TicketThijsMateo.Services.Interfaces;
 using TicketThijsMateo.ViewModels;
 
@@ -12,24 +8,24 @@ namespace TicketThijsMateo.Controllers.API
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class StadiumController : ControllerBase
+    public class UserController : ControllerBase
     {
-        private IService<Stadium> _stadiumService;
+        private IService<AspNetUser> _userService;
         private readonly IMapper _mapper;
 
-        public StadiumController(IMapper mapper, IService<Stadium> service)
+        public UserController(IMapper mapper, IService<AspNetUser> service)
         {
-            _stadiumService = service;
+            _userService = service;
             _mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<ActionResult<StadiumVM>> Get()
+        public async Task<ActionResult<UserVM>> Get()
         {
             try
             {
-                var listStadium = await _stadiumService.GetAllAsync();
-                var data = _mapper.Map<List<StadiumVM>>(listStadium);
+                var listUsers = await _userService.GetAllAsync();
+                var data = _mapper.Map<List<UserVM>>(listUsers);
 
                 if (data == null)
                 {// Als de gegevens niet worden gevonden, retourneer een 404 Not Found-status
@@ -49,3 +45,4 @@ namespace TicketThijsMateo.Controllers.API
 
     }
 }
+

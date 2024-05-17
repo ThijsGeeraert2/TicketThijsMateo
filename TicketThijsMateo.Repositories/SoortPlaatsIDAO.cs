@@ -2,14 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using TicketThijsMateo.Domains.Context;
+using TicketThijsMateo.Domains.Data;
+using TicketThijsMateo.Domains.Entities;
 using TicketThijsMateo.Repositories.Interfaces;
 
 namespace TicketThijsMateo.Repositories
 {
-    public class SoortPlaatsIDAO : IDAO<Soortplaats>
+    public class SoortPlaatsIDAO : IDAO<Soortplaatsen>
     {
         private readonly TicketDBContext dbContext;
 
@@ -17,62 +18,53 @@ namespace TicketThijsMateo.Repositories
         {
             this.dbContext = dbContext;
         }
-        public Task AddAsync(Soortplaats entity)
+
+        public async Task AddAsync(Soortplaatsen entity)
         {
-            throw new NotImplementedException();
+            dbContext.Soortplaatsens.Add(entity);
+            await dbContext.SaveChangesAsync();
         }
 
-        public Task DeleteAsync(Soortplaats entity)
+        public async Task DeleteAsync(Soortplaatsen entity)
         {
-            throw new NotImplementedException();
+            dbContext.Soortplaatsens.Remove(entity);
+            await dbContext.SaveChangesAsync();
         }
 
-        public Task<Soortplaats?> FindByIdAsync(int Id) //moet bystadiumid worden
+        public async Task<Soortplaatsen?> FindByIdAsync(int Id)
         {
-            throw new NotImplementedException();
-
+            return await dbContext.Soortplaatsens.FindAsync(Id);
         }
 
-        public async Task<IEnumerable<Soortplaats>> GetAllAsync()
+        public async Task<IEnumerable<Soortplaatsen>> GetAllAsync()
         {
-            try
-            {// select * from Bieren
-                return await dbContext.Soortplaatsen.ToListAsync();
-                    // volgende Namespaces toevoegen bovenaan using System.Linq; using Microsoft.EntityFrameworkCore;	
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("error in DAO");
-                throw;
-
-            }
+            return await dbContext.Soortplaatsens.ToListAsync();
         }
 
-        public async Task<IEnumerable<Soortplaats>?> GetAllSoortPlaatsenByStadiumId(int Id)
+        public async Task UpdateAsync(Soortplaatsen entity)
+        {
+            dbContext.Entry(entity).State = EntityState.Modified;
+            await dbContext.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<Soortplaatsen>?> GetAllSoortPlaatsenByStadiumId(int Id)
         {
             try
             {
-
-                return await dbContext.Soortplaatsen.Where(b => b.StadiumId == Id)
-                    .ToListAsync();
+                return await dbContext.Soortplaatsens.Where(b => b.StadiumId == Id).ToListAsync();
             }
             catch (Exception ex)
             {
-                throw new Exception("error DAO beer");
+                throw new Exception("Error getting SoortPlaatsen by Stadium ID", ex);
             }
         }
 
-        public Task<IEnumerable<Soortplaats>?> GetAllWedstrijdenBetweenClubs(int thuisploegId, int uitploegId)
+        public Task<IEnumerable<Soortplaatsen>?> GetAllWedstrijdenBetweenClubs(int thuisploegId, int uitploegId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Soortplaats>> GetHotelsNearStadium(string stadiumName)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateAsync(Soortplaats entity)
+        public Task<IEnumerable<Soortplaatsen>> GetHotelsNearStadium(string stadiumName)
         {
             throw new NotImplementedException();
         }
