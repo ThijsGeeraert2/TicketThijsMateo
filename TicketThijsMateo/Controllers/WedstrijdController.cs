@@ -71,6 +71,8 @@ namespace TicketThijsMateo.Controllers
 
             if (ticketCreateVM != null)
             {
+
+                var soortplaats = await soortplaatsService.FindByIdAsync(ticketCreateVM.Soortplaatsnr);
                 TicketVM item = new TicketVM
                 {
                     Betaald = false,
@@ -80,6 +82,7 @@ namespace TicketThijsMateo.Controllers
                     SoortplaatsNr = ticketCreateVM.Soortplaatsnr,
                     ThuisPloeg = ticketCreateVM.ThuisPloeg,
                     UitPloeg = ticketCreateVM.UitPloeg,
+                    Prijs = soortplaats.Tarief
                 };
 
                 ShoppingCartVM? shopping;

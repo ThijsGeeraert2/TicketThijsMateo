@@ -23,6 +23,8 @@
                     <th>@Html.DisplayNameFor(model => model.Ticket[0].Familienaam)</th>
                     <th>@Html.DisplayNameFor(model => model.Ticket[0].ThuisPloeg)</th>
                     <th>@Html.DisplayNameFor(model => model.Ticket[0].UitPloeg)</th>
+                    <th>@Html.DisplayNameFor(model => model.Ticket[0].Prijs)</th>
+
 
                 </tr>
                 @foreach (var item in Model.Ticket)
@@ -33,6 +35,8 @@
                         <td>@Html.DisplayFor(modelItem => item.Familienaam)</td>
                         <td>@Html.DisplayFor(modelItem => item.ThuisPloeg)</td>
                         <td>@Html.DisplayFor(modelItem => item.UitPloeg)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Prijs)</td>
+
 
                         <td>
                             <a asp-action="Delete" asp-route-wedstrijdId="@item.WedstrijdId">
