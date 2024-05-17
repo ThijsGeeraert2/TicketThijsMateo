@@ -33,6 +33,7 @@ namespace TicketThijsMateo.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SetAppLanguage(string lang, string returnUrl)
         {
             Response.Cookies.Append(

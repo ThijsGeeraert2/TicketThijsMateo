@@ -90,6 +90,12 @@ namespace TicketThijsMateo.Controllers
                     shopping.Ticket = new List<TicketVM>();
                 }
 
+                if(shopping.Ticket == null)
+                {
+                    shopping.Ticket = new List<TicketVM>();
+
+                }
+
                 shopping?.Ticket?.Add(item);
                 HttpContext.Session.SetObject("ShoppingCart", shopping);
 

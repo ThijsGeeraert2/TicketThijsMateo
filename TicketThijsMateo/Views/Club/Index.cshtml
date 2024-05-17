@@ -30,6 +30,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Naam)
             </td>
+                <td>
+                    <a asp-action="Details" asp-controller="Stadia" asp-route-id="@item.Id">
+                        <button class="btn btn-primary">Bekijk Stadium</button>
+                    </a>
+                </td>
             <td>
                    <a asp-action="Create" asp-route-id="@item.Id">
                         <button class="btn btn-primary">Buy Subscription</button>
