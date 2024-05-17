@@ -87,7 +87,18 @@ namespace TicketThijsMateo.Repositories
 
         public async Task<IEnumerable<Abonnementen>?> GetTicketsByUserID(string Id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var abonnementen = await dbContext.Abonnementens
+                    .Where(b => b.UserId == Id)
+                    .ToListAsync();
+
+                return abonnementen;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error retrieving tickets for UserID {Id}", ex);
+            }
         }
     }
 }

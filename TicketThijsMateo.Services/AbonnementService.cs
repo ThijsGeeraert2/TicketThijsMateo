@@ -71,7 +71,7 @@ namespace TicketThijsMateo.Services
 
         public async Task<IEnumerable<Abonnementen>?> GetTicketsByUserID(string Id)
         {
-            throw new NotImplementedException();
+            return await _ticketDAO.GetTicketsByUserID(Id);
         }
     }
 }
