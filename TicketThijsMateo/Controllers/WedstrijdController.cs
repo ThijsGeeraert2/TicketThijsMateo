@@ -88,11 +88,15 @@ namespace TicketThijsMateo.Controllers
                 var aantalZitjesInSoortplaats = 0;
                 foreach (var ticket in ticketsVoorWedstrijd)
                 {
-                    var zitplaats = await zitplaatsService.FindByZitplaatsIdAsync((int)ticket.ZitplaatsId);
-                    if (zitplaats.SoortplaatsId == ticketCreateVM.Soortplaatsnr)
+                    var zitplaats = await zitplaatsService.FindZitplaatsByIdAsync((int)ticket.ZitplaatsId);
+                    if (zitplaats != null)
                     {
-                        aantalZitjesInSoortplaats++;
+                        if (zitplaats.SoortplaatsId == ticketCreateVM.Soortplaatsnr)
+                        {
+                            aantalZitjesInSoortplaats++;
+                        }
                     }
+                 
                 }
 
 
