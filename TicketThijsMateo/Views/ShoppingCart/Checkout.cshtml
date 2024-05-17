@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Checkout";
+}
+
+<h1>Checkout Page</h1>
+
+@if (ViewBag.Error != null)
+{
+    <p>Error: @ViewBag.Error</p>
+}
+else
+{
+    <p>Thank you for your purchase!</p>
+}

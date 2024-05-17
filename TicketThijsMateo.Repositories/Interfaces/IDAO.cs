@@ -16,7 +16,8 @@ namespace TicketThijsMateo.Repositories.Interfaces
         Task<IEnumerable<T>?> GetAllWedstrijdenBetweenClubs(int thuisploegId, int uitploegId);
         Task<IEnumerable<T>> GetHotelsNearStadium(string stadiumName);
         Task<IEnumerable<T>?> GetAllSoortPlaatsenByStadiumId(int Id);
-
+        Task<int> GetLastZetelNummer();
+       
 
     }
 

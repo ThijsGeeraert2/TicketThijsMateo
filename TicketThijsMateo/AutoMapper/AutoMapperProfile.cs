@@ -29,6 +29,10 @@ namespace TicketThijsMateo.AutoMapper
             CreateMap<HotelVM, Hotel>();
 
             CreateMap<TicketVM, Ticket>();
+
+            CreateMap<Zitplaatsen, ZitPlaatsVM>();
+            CreateMap<ZitPlaatsVM, Zitplaatsen>();
+
         }
     }
 }

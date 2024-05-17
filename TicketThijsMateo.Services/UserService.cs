@@ -57,5 +57,10 @@ namespace TicketThijsMateo.Services
         {
             throw new NotImplementedException();
         }
+
+        public async Task<int> GetLastZetelNummer()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

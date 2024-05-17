@@ -9,17 +9,14 @@ using TicketThijsMateo.Services;
 using TicketThijsMateo.Services.Interfaces;
 using TicketThijsMateo.util.Mail.Interfaces;
 using TicketThijsMateo.util.PDF.Interfaces;
-using Microsoft.AspNetCore.Mvc;
-using TicketThijsMateo.Domains.Context;
-using TicketThijsMateo.Extensions;
-using TicketThijsMateo.Services.Interfaces;
 using TicketThijsMateo.ViewModels;
 
 namespace TicketThijsMateo.Controllers
 {
     public class ShoppingCartController : Controller
     {
-        private IService<Ticket> ticketService;
+        private IService<Ticket> _ticketService;
+        private IService<Zitplaatsen> _zitPlaatsService;
         private readonly IMapper _mapper;
 
         private readonly IEmailSend _emailSend;
@@ -28,10 +25,11 @@ namespace TicketThijsMateo.Controllers
 
         private readonly UserManager<IdentityUser> _userManager;
 
-        public ShoppingCartController(IMapper mapper, IService<Ticket> ticketService, IEmailSend emailSend, ICreatePDF createPDF, IWebHostEnvironment hostingEnvironment, UserManager<IdentityUser> userManager)
+        public ShoppingCartController(IMapper mapper, IService<Ticket> ticketService, IService<Zitplaatsen> zitplaatsService, IEmailSend emailSend, ICreatePDF createPDF, IWebHostEnvironment hostingEnvironment, UserManager<IdentityUser> userManager)
         {
             _mapper = mapper;
-            this.ticketService = ticketService;
+            _ticketService = ticketService;
+            _zitPlaatsService = zitplaatsService;
 
             _emailSend = emailSend;
             _createPDF = createPDF;
@@ -61,8 +59,8 @@ namespace TicketThijsMateo.Controllers
 
             var currentUser = await _userManager.GetUserAsync(User);
 
-            try
-            {
+            //try
+            //{
                 var ticketsVM = cartList.Ticket;
 
                 foreach (var ticketVM in ticketsVM)
@@ -90,15 +88,37 @@ namespace TicketThijsMateo.Controllers
 
                     // Delete the temporary PDF file after sending the email
                     System.IO.File.Delete(pdfFilePath);
+
+                    var lastSeatNumber = await _zitPlaatsService.GetLastZetelNummer();
+                    int newSeatNumber = lastSeatNumber + 1;
+
+                    var newZitplaats = new ZitPlaatsVM
+                    {
+                        RijNummer = 1,
+                        ZetelNummer = newSeatNumber,
+                    };
+
+                    var zitplaats = _mapper.Map<Zitplaatsen>(newZitplaats);
+
+                    await _zitPlaatsService.AddAsync(zitplaats);
+
+                    ticketVM.Zitplaats = zitplaats;
+
+                    var ticketEntity = _mapper.Map<Ticket>(ticketVM);
+
+                    await _ticketService.AddAsync(ticketEntity);
+
                 }
 
+                HttpContext.Session.Remove("ShoppingCart");
+
                 return View("Thanks");
-            }
-            catch (Exception ex)
-            {
-                ViewBag.Error = $"Failed to send email: {ex.Message}";
-                return View();
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    ViewBag.Error = $"Failed to send email: {ex.Message}";
+            //    return View();
+            //}
         }
 
 
