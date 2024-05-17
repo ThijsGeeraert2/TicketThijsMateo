@@ -73,6 +73,26 @@ namespace TicketThijsMateo.Controllers
             {
 
                 var soortplaats = await soortplaatsService.FindByIdAsync(ticketCreateVM.Soortplaatsnr);
+
+                var ticketsVoorWedstrijd = await ticketService.GetAllByWedstrijdId(ticketCreateVM.wedstrijdId);
+
+                var aantalZitjesInSoortplaats = 0;
+                foreach (var ticket in ticketsVoorWedstrijd)
+                {
+                    var zitplaats = await zitplaatsService.FindByZitplaatsIdAsync((int)ticket.ZitplaatsId);
+                    if (zitplaats.SoortplaatsId == ticketCreateVM.Soortplaatsnr)
+                    {
+                        aantalZitjesInSoortplaats++;
+                    }
+                }
+
+
+                if (aantalZitjesInSoortplaats >= soortplaats.Capaciteit)
+                {
+                    return NotFound("Soortplaats is uitverkocht");
+                }
+
+
                 TicketVM item = new TicketVM
                 {
                     Betaald = false,
