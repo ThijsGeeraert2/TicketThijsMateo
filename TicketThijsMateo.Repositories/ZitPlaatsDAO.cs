@@ -22,15 +22,15 @@ namespace TicketThijsMateo.Repositories
         public async Task AddAsync(Zitplaatsen entity)
         {
             _ticketDBContext.Entry(entity).State = EntityState.Added;
-
-            try
-            {
-                await _ticketDBContext.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error Dao tickets");
-            }
+            await _ticketDBContext.SaveChangesAsync();
+            //try
+            //{
+                
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw new Exception("Error Dao tickets");
+            //}
         }
 
         public Task DeleteAsync(Zitplaatsen entity)

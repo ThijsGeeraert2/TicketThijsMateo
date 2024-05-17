@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using TicketThijsMateo.Domains.Entities;
 
 namespace TicketThijsMateo.ViewModels
 {
@@ -9,5 +10,6 @@ namespace TicketThijsMateo.ViewModels
         public int wedstrijdId {  get; set; }
         public int Soortplaatsnr { get; set; }
         public IEnumerable<SelectListItem>? Soortplaatsen { get; set; }
+        
     }
 }
