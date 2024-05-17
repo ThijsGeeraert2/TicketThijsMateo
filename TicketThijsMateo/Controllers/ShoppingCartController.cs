@@ -18,6 +18,7 @@ namespace TicketThijsMateo.Controllers
         private IService<Ticket> _ticketService;
         private IService<Zitplaatsen> _zitPlaatsService;
         private IService<Soortplaatsen> _soortPlaatsenService;
+        private IService<AbonnementService> _abonnementService;
         private readonly IMapper _mapper;
 
         private readonly IEmailSend _emailSend;
@@ -26,12 +27,13 @@ namespace TicketThijsMateo.Controllers
 
         private readonly UserManager<IdentityUser> _userManager;
 
-        public ShoppingCartController(IMapper mapper, IService<Ticket> ticketService, IService<Zitplaatsen> zitplaatsService, IService<Soortplaatsen> soortPlaatsService, IEmailSend emailSend, ICreatePDF createPDF, IWebHostEnvironment hostingEnvironment, UserManager<IdentityUser> userManager)
+        public ShoppingCartController(IMapper mapper, IService<Ticket> ticketService, IService<Zitplaatsen> zitplaatsService, IService<Soortplaatsen> soortPlaatsService, IService<AbonnementService> abonnementService, IEmailSend emailSend, ICreatePDF createPDF, IWebHostEnvironment hostingEnvironment, UserManager<IdentityUser> userManager)
         {
             _mapper = mapper;
             _ticketService = ticketService;
             _zitPlaatsService = zitplaatsService;
             _soortPlaatsenService = soortPlaatsService;
+            _abonnementService = abonnementService;
 
             _emailSend = emailSend;
             _createPDF = createPDF;
@@ -121,7 +123,7 @@ namespace TicketThijsMateo.Controllers
                 // Generate PDF document for the current ticket
                 var abbonement = _mapper.Map<Abonnementen>(subscriptionVM);
                 string logoPath = Path.Combine(_hostingEnvironment.WebRootPath, "images", "proleague.png");
-                var pdfDocument = _createPDF.CreatePDFDocumentAsync(abonnement, logoPath);
+                var pdfDocument = _createPDF.CreatePDFDocumentAsync(abbonement, logoPath);
 
                 // Create a unique file name for the PDF
                 string pdfFileName = $"ticket_{abbonement.Id}_{Guid.NewGuid()}.pdf";
@@ -157,12 +159,12 @@ namespace TicketThijsMateo.Controllers
 
                 await _zitPlaatsService.AddAsync(zitplaats);
 
-                ticketVM.Zitplaats = zitplaats;
+                subscriptionVM.Zitplaats = zitplaats;
 
-                var ticketEntity = _mapper.Map<Ticket>(ticketVM);
-                ticketEntity.UserId = currentUser.Id;
+                var abonnementEntity = _mapper.Map<Abonnementen>(subscriptionVM);
+                abonnementEntity.UserId = currentUser.Id;
 
-                await _ticketService.AddAsync(ticketEntity);
+                await _abonnementService.AddAsync(abonnementEntity);
 
             }
 

@@ -11,5 +11,6 @@ namespace TicketThijsMateo.util.PDF.Interfaces
     public interface ICreatePDF
     {
         MemoryStream CreatePDFDocumentAsync(Ticket ticket, string logoPath);
+        MemoryStream CreatePDFDocumentAsync(Abonnementen abonnement, string logoPath);
     }
 }
