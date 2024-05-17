@@ -66,6 +66,10 @@
                     <th>@Html.DisplayNameFor(model => model.Subscription[0].Betaald)</th>
                     <th>@Html.DisplayNameFor(model => model.Subscription[0].Voornaam)</th>
                     <th>@Html.DisplayNameFor(model => model.Subscription[0].Familienaam)</th>
+                    <th>@Html.DisplayNameFor(model => model.Subscription[0].StartDatum)</th>
+                    <th>@Html.DisplayNameFor(model => model.Subscription[0].EindDatum)</th>
+
+
                 </tr>
                 @foreach (var item in Model.Subscription)
                 {
@@ -74,6 +78,10 @@
                         <td>@Html.DisplayFor(modelItem => item.Betaald)</td>
                         <td>@Html.DisplayFor(modelItem => item.Voornaam)</td>
                         <td>@Html.DisplayFor(modelItem => item.Familienaam)</td>
+                        <td>@Html.DisplayFor(modelItem => item.StartDatum.Value.Year)</td>
+                        <td>@Html.DisplayFor(modelItem => item.EindDatum.Value.Year)</td>
+
+
                         <td>
                             <a asp-action="DeleteSubscription" asp-route-clubId="@item.ClubId">
                                 <img src="~/Images/delete.png" style="width:25px;height:25px" />

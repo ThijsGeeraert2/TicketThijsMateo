@@ -63,6 +63,32 @@ namespace TicketThijsMateo.Controllers
 
             if (svm != null)
             {
+                DateTime currentDate = DateTime.Now;
+                int currentYear = currentDate.Year;
+
+                // Define the start and end dates of the season
+                DateTime seasonStart = new DateTime(currentYear, 8, 1);
+                DateTime seasonEnd = new DateTime(currentYear + 1, 5, 31);
+
+                DateTime newSeasonStart;
+                DateTime newSeasonEnd;
+
+                if (currentDate.Month < 8)
+                {
+                    seasonStart = seasonStart.AddYears(-1);
+                    seasonEnd = seasonEnd.AddYears(-1);
+                }
+
+                if (currentDate >= seasonStart && currentDate <= seasonEnd)
+                {
+                    newSeasonStart = seasonStart.AddYears(1);
+                    newSeasonEnd = seasonEnd.AddYears(1);
+                } else
+                {
+                    newSeasonStart = seasonStart;
+                    newSeasonEnd = seasonEnd;
+                }
+
                 SubscriptionVM item = new SubscriptionVM
                 {
                     Betaald = false,
@@ -70,7 +96,8 @@ namespace TicketThijsMateo.Controllers
                     Familienaam = svm.Naam,
                     ClubId = svm.ClubId,
                     SoortplaatsNr = svm.Soortplaatsnr,
-
+                    StartDatum = newSeasonStart,
+                    EindDatum = newSeasonEnd,
 
                 };
 
