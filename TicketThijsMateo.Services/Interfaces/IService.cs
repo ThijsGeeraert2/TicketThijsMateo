@@ -20,7 +20,7 @@ namespace TicketThijsMateo.Services.Interfaces
 
         Task<IEnumerable<T>?> GetHotelsNearStadium(string stadiumName);
 
-        Task<int> GetLastZetelNummer();
+        Task<int> GetLastZetelNummer(int Id);
 
     }
 

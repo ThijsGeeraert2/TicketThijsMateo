@@ -95,9 +95,11 @@ namespace TicketThijsMateo.Controllers
                         // Delete the temporary PDF file after sending the email
                         System.IO.File.Delete(pdfFilePath);
 
-                        var lastSeatNumber = await _zitPlaatsService.GetLastZetelNummer();
-                        int newSeatNumber = lastSeatNumber + 1;
+                        
                         var plaats = await _soortPlaatsenService.FindByIdAsync(ticketVM.SoortplaatsNr);
+
+                        var lastSeatNumber = await _zitPlaatsService.GetLastZetelNummer(plaats.Id);
+                        int newSeatNumber = lastSeatNumber + 1;
 
                         var newZitplaats = new ZitPlaatsVM
                         {
@@ -146,9 +148,11 @@ namespace TicketThijsMateo.Controllers
                         // Delete the temporary PDF file after sending the email
                         System.IO.File.Delete(pdfFilePath);
 
-                        var lastSeatNumber = await _zitPlaatsService.GetLastZetelNummer();
-                        int newSeatNumber = lastSeatNumber + 1;
+                        
                         var plaats = await _soortPlaatsenService.FindByIdAsync(subscriptionVM.SoortplaatsNr);
+
+                        var lastSeatNumber = await _zitPlaatsService.GetLastZetelNummer(plaats.Id);
+                        int newSeatNumber = lastSeatNumber + 1;
 
                         var newZitplaats = new ZitPlaatsVM
                         {

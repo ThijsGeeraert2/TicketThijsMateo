@@ -40,7 +40,17 @@ namespace TicketThijsMateo.Repositories
 
         public async Task<Zitplaatsen?> FindByIdAsync(int Id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await _ticketDBContext.Zitplaatsens.Where(b => b.SoortplaatsId == Id)
+                    .FirstOrDefaultAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("error in DAO");
+                throw;
+
+            }
         }
 
         public async Task<IEnumerable<Zitplaatsen>> GetAllAsync()
@@ -68,13 +78,21 @@ namespace TicketThijsMateo.Repositories
             throw new NotImplementedException();
         }
 
-        public async Task<int> GetLastZetelNummer()
+        public async Task<int> GetLastZetelNummer(int Id)
         {
-            var allZitplaatsen = await GetAllAsync();
+            try
+            {
+                var lastZitplaats = await _ticketDBContext.Zitplaatsens
+                    .Where(b => b.SoortplaatsId == Id)
+                    .OrderByDescending(b => b.ZetelNummer)
+                    .FirstOrDefaultAsync();
 
-            var lastZitplaats = allZitplaatsen.LastOrDefault();
-
-            return lastZitplaats?.ZetelNummer ?? 0;
+                return lastZitplaats?.ZetelNummer ?? 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error retrieving the last ZetelNummer for SoortplaatsId {Id}", ex);
+            }
         }
     }
 }
