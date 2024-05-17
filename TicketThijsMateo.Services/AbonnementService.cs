@@ -3,64 +3,63 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TicketThijsMateo.Domains.Context;
 using TicketThijsMateo.Domains.Entities;
 using TicketThijsMateo.Repositories.Interfaces;
 using TicketThijsMateo.Services.Interfaces;
 
 namespace TicketThijsMateo.Services
 {
-    public class TicketService : IService<Ticket>
+    public class AbonnementService : IService<Abonnementen>
     {
-        private IDAO<Ticket> _ticketDAO;
+        private IDAO<Abonnementen> _ticketDAO;
 
-        public TicketService(IDAO<Ticket> ticketDAO)
+        public AbonnementService(IDAO<Abonnementen> ticketDAO)
         {
             _ticketDAO = ticketDAO;
         }
 
-        public async Task AddAsync(Ticket entity)
+        public async Task AddAsync(Abonnementen entity)
         {
             await _ticketDAO.AddAsync(entity);
         }
 
-        public Task DeleteAsync(Ticket entity)
+        public Task DeleteAsync(Abonnementen entity)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<Ticket?> FindByIdAsync(int Id)
+        public async Task<Abonnementen?> FindByIdAsync(int Id)
         {
             return await _ticketDAO.FindByIdAsync(Id);
         }
 
-        public async Task<IEnumerable<Ticket>> GetAllAsync()
+        public async Task<IEnumerable<Abonnementen>> GetAllAsync()
         {
             return await _ticketDAO.GetAllAsync();
 
         }
 
-        public Task UpdateAsync(Ticket entity)
+        public Task UpdateAsync(Abonnementen entity)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Ticket>> GetHotelsNearStadium(string stadiumName)
+        public async Task<IEnumerable<Abonnementen>> GetHotelsNearStadium(string stadiumName)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Ticket>?> GetAllWedstrijdenBetweenClubs(int thuisPloegId, int uitPloegId)
+        public async Task<IEnumerable<Abonnementen>?> GetAllWedstrijdenBetweenClubs(int thuisPloegId, int uitPloegId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Wedstrijden>?> GetAllSoortPlaatsenByStadiumId(int Id)
+        public Task<IEnumerable<Abonnementen>?> GetAllSoortPlaatsenByStadiumId(int Id)
         {
             throw new NotImplementedException();
         }
 
-        Task<IEnumerable<Ticket>?> IService<Ticket>.GetAllSoortPlaatsenByStadiumId(int Id)
+        Task<IEnumerable<Abonnementen>?> IService<Abonnementen>.GetAllSoortPlaatsenByStadiumId(int Id)
         {
             throw new NotImplementedException();
         }

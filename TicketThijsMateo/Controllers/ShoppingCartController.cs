@@ -9,17 +9,16 @@ using TicketThijsMateo.Services;
 using TicketThijsMateo.Services.Interfaces;
 using TicketThijsMateo.util.Mail.Interfaces;
 using TicketThijsMateo.util.PDF.Interfaces;
-using Microsoft.AspNetCore.Mvc;
-using TicketThijsMateo.Domains.Context;
-using TicketThijsMateo.Extensions;
-using TicketThijsMateo.Services.Interfaces;
 using TicketThijsMateo.ViewModels;
 
 namespace TicketThijsMateo.Controllers
 {
     public class ShoppingCartController : Controller
     {
-        private IService<Ticket> ticketService;
+        private IService<Ticket> _ticketService;
+        private IService<Zitplaatsen> _zitPlaatsService;
+        private IService<Soortplaatsen> _soortPlaatsenService;
+        private IService<Abonnementen> _abonnementService;
         private readonly IMapper _mapper;
 
         private readonly IEmailSend _emailSend;
@@ -28,10 +27,13 @@ namespace TicketThijsMateo.Controllers
 
         private readonly UserManager<IdentityUser> _userManager;
 
-        public ShoppingCartController(IMapper mapper, IService<Ticket> ticketService, IEmailSend emailSend, ICreatePDF createPDF, IWebHostEnvironment hostingEnvironment, UserManager<IdentityUser> userManager)
+        public ShoppingCartController(IMapper mapper, IService<Ticket> ticketService, IService<Zitplaatsen> zitplaatsService, IService<Soortplaatsen> soortPlaatsService, IService<Abonnementen> abonnementService, IEmailSend emailSend, ICreatePDF createPDF, IWebHostEnvironment hostingEnvironment, UserManager<IdentityUser> userManager)
         {
             _mapper = mapper;
-            this.ticketService = ticketService;
+            _ticketService = ticketService;
+            _zitPlaatsService = zitplaatsService;
+            _soortPlaatsenService = soortPlaatsService;
+            _abonnementService = abonnementService;
 
             _emailSend = emailSend;
             _createPDF = createPDF;
@@ -63,36 +65,112 @@ namespace TicketThijsMateo.Controllers
 
             try
             {
-                var ticketsVM = cartList.Ticket;
+                List<TicketVM> ticketsVM = cartList.Ticket;
+            List<SubscriptionVM> subscriptionsVM = cartList.Subscription;
 
-                foreach (var ticketVM in ticketsVM)
+            foreach (var ticketVM in ticketsVM)
+            {
+                // Generate PDF document for the current ticket
+                var ticket = _mapper.Map<Ticket>(ticketVM);
+                string logoPath = Path.Combine(_hostingEnvironment.WebRootPath, "images", "proleague.png");
+                var pdfDocument = _createPDF.CreatePDFDocumentAsync(ticket, logoPath);
+
+                // Create a unique file name for the PDF
+                string pdfFileName = $"ticket_{ticket.Id}_{Guid.NewGuid()}.pdf";
+
+                // Save the PDF document to a temporary file
+                string pdfFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "pdf", pdfFileName);
+                using (FileStream fileStream = new FileStream(pdfFilePath, FileMode.Create))
                 {
-                    // Generate PDF document for the current ticket
-                    var ticket = _mapper.Map<Ticket>(ticketVM);
-                    string logoPath = Path.Combine(_hostingEnvironment.WebRootPath, "images", "proleague.png");
-                    var pdfDocument = _createPDF.CreatePDFDocumentAsync(ticket, logoPath);
-
-                    // Create a unique file name for the PDF
-                    string pdfFileName = $"ticket_{ticket.Id}_{Guid.NewGuid()}.pdf";
-
-                    // Save the PDF document to a temporary file
-                    string pdfFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "pdf", pdfFileName);
-                    using (FileStream fileStream = new FileStream(pdfFilePath, FileMode.Create))
-                    {
-                        pdfDocument.WriteTo(fileStream);
-                    }
-
-                    // Send email with PDF attachment
-                    using (FileStream attachmentStream = new FileStream(pdfFilePath, FileMode.Open))
-                    {
-                        await _emailSend.SendEmailAttachmentAsync(currentUser.Email, "Tickets Jupiler Pro League", "Beste, hierbij uw ticket voor de Jupiler Pro League", attachmentStream, pdfFileName);
-                    }
-
-                    // Delete the temporary PDF file after sending the email
-                    System.IO.File.Delete(pdfFilePath);
+                    pdfDocument.WriteTo(fileStream);
                 }
 
-                return View("Thanks");
+                // Send email with PDF attachment
+                using (FileStream attachmentStream = new FileStream(pdfFilePath, FileMode.Open))
+                {
+                    await _emailSend.SendEmailAttachmentAsync(currentUser.Email, "Tickets Jupiler Pro League", "Beste, hierbij uw ticket voor de Jupiler Pro League", attachmentStream, pdfFileName);
+                }
+
+                // Delete the temporary PDF file after sending the email
+                System.IO.File.Delete(pdfFilePath);
+
+                var lastSeatNumber = await _zitPlaatsService.GetLastZetelNummer();
+                int newSeatNumber = lastSeatNumber + 1;
+                var plaats = await _soortPlaatsenService.FindByIdAsync(ticketVM.SoortplaatsNr);
+
+                var newZitplaats = new ZitPlaatsVM
+                {
+                    RijNummer = 1,
+                    ZetelNummer = newSeatNumber,
+                    Soortplaats = plaats
+                };
+
+                var zitplaats = _mapper.Map<Zitplaatsen>(newZitplaats);
+
+                await _zitPlaatsService.AddAsync(zitplaats);
+
+                ticketVM.Zitplaats = zitplaats;
+
+                var ticketEntity = _mapper.Map<Ticket>(ticketVM);
+                ticketEntity.UserId = currentUser.Id;
+
+                await _ticketService.AddAsync(ticketEntity);
+
+            }
+
+            foreach (var subscriptionVM in subscriptionsVM)
+            {
+                // Generate PDF document for the current ticket
+                var abbonement = _mapper.Map<Abonnementen>(subscriptionVM);
+                string logoPath = Path.Combine(_hostingEnvironment.WebRootPath, "images", "proleague.png");
+                var pdfDocument = _createPDF.CreatePDFDocumentAsync(abbonement, logoPath);
+
+                // Create a unique file name for the PDF
+                string pdfFileName = $"ticket_{abbonement.Id}_{Guid.NewGuid()}.pdf";
+
+                // Save the PDF document to a temporary file
+                string pdfFilePath = Path.Combine(_hostingEnvironment.WebRootPath, "pdf", pdfFileName);
+                using (FileStream fileStream = new FileStream(pdfFilePath, FileMode.Create))
+                {
+                    pdfDocument.WriteTo(fileStream);
+                }
+
+                // Send email with PDF attachment
+                using (FileStream attachmentStream = new FileStream(pdfFilePath, FileMode.Open))
+                {
+                    await _emailSend.SendEmailAttachmentAsync(currentUser.Email, "Tickets Jupiler Pro League", "Beste, hierbij uw ticket voor de Jupiler Pro League", attachmentStream, pdfFileName);
+                }
+
+                // Delete the temporary PDF file after sending the email
+                System.IO.File.Delete(pdfFilePath);
+
+                var lastSeatNumber = await _zitPlaatsService.GetLastZetelNummer();
+                int newSeatNumber = lastSeatNumber + 1;
+                var plaats = await _soortPlaatsenService.FindByIdAsync(subscriptionVM.SoortplaatsNr);
+
+                var newZitplaats = new ZitPlaatsVM
+                {
+                    RijNummer = 1,
+                    ZetelNummer = newSeatNumber,
+                    Soortplaats = plaats
+                };
+
+                var zitplaats = _mapper.Map<Zitplaatsen>(newZitplaats);
+
+                await _zitPlaatsService.AddAsync(zitplaats);
+
+                subscriptionVM.Zitplaats = zitplaats;
+
+                var abonnementEntity = _mapper.Map<Abonnementen>(subscriptionVM);
+                abonnementEntity.UserId = currentUser.Id;
+
+                await _abonnementService.AddAsync(abonnementEntity);
+
+            }
+
+            HttpContext.Session.Remove("ShoppingCart");
+
+            return View("Thanks");
             }
             catch (Exception ex)
             {

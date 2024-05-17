@@ -33,7 +33,17 @@ namespace TicketThijsMateo.Repositories
 
         public async Task<Soortplaatsen?> FindByIdAsync(int Id)
         {
-            return await dbContext.Soortplaatsens.FindAsync(Id);
+            try
+            {
+                return await dbContext.Soortplaatsens.Where(b => b.Id == Id)
+                    .FirstOrDefaultAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("error in DAO");
+                throw;
+
+            }
         }
 
         public async Task<IEnumerable<Soortplaatsen>> GetAllAsync()
@@ -65,6 +75,11 @@ namespace TicketThijsMateo.Repositories
         }
 
         public Task<IEnumerable<Soortplaatsen>> GetHotelsNearStadium(string stadiumName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<int> GetLastZetelNummer()
         {
             throw new NotImplementedException();
         }

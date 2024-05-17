@@ -69,6 +69,8 @@ namespace TicketThijsMateo.Controllers
                     Voornaam = svm.Voornaam,
                     Familienaam = svm.Naam,
                     ClubId = svm.ClubId,
+                    SoortplaatsNr = svm.Soortplaatsnr,
+
 
                 };
 

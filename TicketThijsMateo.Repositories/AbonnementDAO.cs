@@ -2,26 +2,24 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
-using TicketThijsMateo.Domains.Context;
 using TicketThijsMateo.Domains.Data;
 using TicketThijsMateo.Domains.Entities;
 using TicketThijsMateo.Repositories.Interfaces;
 
 namespace TicketThijsMateo.Repositories
 {
-    public class TicketDAO : IDAO<Ticket>
+    public class AbonnementDAO : IDAO<Abonnementen>
     {
         private readonly TicketDBContext dbContext;
 
-        public TicketDAO(TicketDBContext dbContext)
+        public AbonnementDAO(TicketDBContext dbContext)
         {
             this.dbContext = dbContext;
         }
 
-        public async Task AddAsync(Ticket entity)
+        public async Task AddAsync(Abonnementen entity)
         {
             dbContext.Entry(entity).State = EntityState.Added;
             
@@ -35,28 +33,28 @@ namespace TicketThijsMateo.Repositories
             }
         }
 
-        public Task DeleteAsync(Ticket entity)
+        public Task DeleteAsync(Abonnementen entity)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<Ticket?> FindByIdAsync(int Id)
+        public async Task<Abonnementen?> FindByIdAsync(int Id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Ticket>?> GetHotelsNearStadium(string stadiumName)
+        public Task<IEnumerable<Abonnementen>?> GetHotelsNearStadium(string stadiumName)
         {
             throw new NotImplementedException();
         }
 
 
 
-        public async Task<IEnumerable<Ticket>?> GetAllAsync()
+        public async Task<IEnumerable<Abonnementen>?> GetAllAsync()
         {
             try
             {// select * from Bieren
-                return await dbContext.Tickets
+                return await dbContext.Abonnementens
                     .ToListAsync(); // volgende Namespaces toevoegen bovenaan using System.Linq; using Microsoft.EntityFrameworkCore;	
             }
             catch (Exception ex)
@@ -67,17 +65,17 @@ namespace TicketThijsMateo.Repositories
             }
         }
 
-        public Task<IEnumerable<Ticket>?> GetAllSoortPlaatsenByStadiumId(int Id)
+        public Task<IEnumerable<Abonnementen>?> GetAllSoortPlaatsenByStadiumId(int Id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Ticket>?> GetAllWedstrijdenBetweenClubs(int thuisploegId, int uitploegId)
+        public Task<IEnumerable<Abonnementen>?> GetAllWedstrijdenBetweenClubs(int thuisploegId, int uitploegId)
         {
             throw new NotImplementedException();
         }
 
-        public Task UpdateAsync(Ticket entity)
+        public Task UpdateAsync(Abonnementen entity)
         {
             throw new NotImplementedException();
         }
@@ -88,3 +86,4 @@ namespace TicketThijsMateo.Repositories
         }
     }
 }
+

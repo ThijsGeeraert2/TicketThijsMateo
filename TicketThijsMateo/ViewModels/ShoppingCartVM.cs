@@ -1,4 +1,6 @@
-﻿namespace TicketThijsMateo.ViewModels
+﻿using TicketThijsMateo.Domains.Entities;
+
+namespace TicketThijsMateo.ViewModels
 {
     public class ShoppingCartVM
     {
@@ -16,8 +18,9 @@
 
         public bool Betaald { get; set; }
         public int PersoonId { get; set; }
-
-        public int ZitplaatsId { get; set; }
+        public int SoortplaatsNr { get; set; }
+        public Zitplaatsen Zitplaats { get; set; }
+        public Soortplaatsen Soortplaats { get; set; }
 
         public string? Voornaam { get; set; }
         public string? Familienaam { get; set; }
@@ -34,6 +37,8 @@
         public int PersoonId { get; set; }
 
         public int ZitplaatsId { get; set; }
+        public Zitplaatsen Zitplaats { get; set; }
+        public int SoortplaatsNr { get; set; }
 
         public string? Voornaam { get; set; }
         public string? Familienaam { get; set; }

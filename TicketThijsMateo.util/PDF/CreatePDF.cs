@@ -60,6 +60,42 @@ namespace TicketThijsMateo.util.PDF
 
         }
 
+        public MemoryStream CreatePDFDocumentAsync(Abonnementen abbonement, string logoPath)
+        {
+            using (MemoryStream stream = new MemoryStream())
+            {
+                PdfWriter writer = new PdfWriter(stream);
+                PdfDocument pdf = new PdfDocument(writer);
+                Document document = new Document(pdf);
+
+                ImageData imageData = ImageDataFactory.Create(logoPath);
+                Image image = new Image(imageData);
+
+                document.Add(image);
+                document.Add(new Paragraph("Abbonement Jupiler Pro League").SetFontSize(20));
+                document.Add(new Paragraph("Abbonementnr:" + abbonement.Id).SetFont(PdfFontFactory.CreateFont(StandardFonts.HELVETICA)).SetFontSize(16).SetFontColor(ColorConstants.BLUE));
+                document.Add(new Paragraph("Datum: " + DateTime.Now.ToShortDateString()));
+                document.Add(new Paragraph(""));
+                document.Add(new Paragraph("Beste " + abbonement.Voornaam + " " + abbonement.Familienaam));
+                document.Add(new Paragraph("Met deze QR code kan u de match bijwonen"));
+
+
+
+                string qrContent = abbonement.Id.ToString();
+                QRCodeGenerator qrGenerator = new QRCodeGenerator();
+                QRCodeData qrCodeData = qrGenerator.CreateQrCode(qrContent, QRCodeGenerator.ECCLevel.Q);
+                QRCode qrCode = new QRCode(qrCodeData);
+                Bitmap qrCodeImage = qrCode.GetGraphic(3); // Grootte van 20 pixels
+                Image qrCodeImageElement = new
+                Image(ImageDataFactory.Create(BitmapToBytes(qrCodeImage))).SetHorizontalAlignment(HorizontalAlignment.CENTER);
+                document.Add(qrCodeImageElement);
+                document.Close();
+                return new MemoryStream(stream.ToArray());
+
+            }
+
+
+        }
 
         // This method is for converting bitmap into a byte array
         private static byte[] BitmapToBytes(Bitmap img)
