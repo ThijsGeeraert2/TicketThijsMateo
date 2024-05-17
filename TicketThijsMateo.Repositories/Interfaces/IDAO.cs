@@ -19,7 +19,7 @@ namespace TicketThijsMateo.Repositories.Interfaces
 
         Task<IEnumerable<T>?> GetAllByWedstrijdId(int Id);
         Task <T?> FindByZitplaatsIdAsync(int Id);
-        
+     
         Task<int> GetLastZetelNummer(int Id);
        
 

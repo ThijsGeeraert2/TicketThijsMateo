@@ -104,12 +104,7 @@ namespace TicketThijsMateo.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Wedstrijden>?> FindByZitplaatsIdAsync(int Id)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<Wedstrijden?> IDAO<Wedstrijden>.FindByZitplaatsIdAsync(int Id)
+        public Task<Wedstrijden?> FindByZitplaatsIdAsync(int Id)
         {
             throw new NotImplementedException();
         }
