@@ -113,5 +113,15 @@ namespace TicketThijsMateo.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public async Task<IEnumerable<Hotel>?> GetTicketsByUserID(string Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<Hotel?> FindZitplaatsByIdAsync(int Id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

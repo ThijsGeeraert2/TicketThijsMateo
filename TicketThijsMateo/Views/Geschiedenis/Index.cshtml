@@ -1,0 +1,146 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model TicketThijsMateo.ViewModels.GeschiedenisViewModel
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Aankoop geschiedenis</h1>
+@if (SignInManager.IsSignedIn(User))
+{
+    @if (Model != null)
+    {
+        <h2>Tickets</h2>
+        @if (Model.Tickets != null)
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            AankoopDatum
+                        </th>
+                        <th>
+                            Voornaam
+                        </th>
+                        <th>
+                            Familienaam
+                        </th>
+                        <th>
+                            ThuisPloeg
+                        </th>
+                        <th>
+                            UitPloeg
+                        </th>
+                        <th>
+                            Wedstrijd Datum
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var ticket in Model.Tickets)
+                    {
+                        <tr>
+                            <td>
+                                @ticket.Ticket.AankoopDatum.ToString("dd-MM-yyyy")
+                            </td>
+                            <td>
+                                @ticket.Ticket.Voornaam
+                            </td>
+                            <td>
+                                @ticket.Ticket.Familienaam
+                            </td>
+                            <td>
+                                @ticket.ThuisPloegNaam
+                            </td>
+                            <td>
+                                @ticket.UitPloegNaam
+                            </td>
+                            <td>
+                                @ticket.WedstrijdDatum.ToString("dd-MM-yyyy")
+                            </td>
+                            <td>
+                                @* @Html.ActionLink("Edit", "Edit", new {  id=item.Biernr  }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Biernr }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Biernr }) *@
+
+
+                                @if ((ticket.WedstrijdDatum - DateTime.Now).TotalDays > 7)
+                                {
+                                    <form method="post" asp-action="Delete" asp-route-id="@ticket.Ticket.Id" onsubmit="return confirm('Are you sure you want to delete this ticket?');">
+                                        <button type="submit" class="btn btn-primary">Annuleer</button>
+                                    </form>
+
+                                }
+                                else
+                                {
+                                    <button class="btn btn-primary" disabled>Annuleer</button>
+                                }
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <h3>Je hebt nog geen tickets gekocht!</h3>
+        }
+        <h2>Abonnementen</h2>
+        @if (Model.Abonnementen != null)
+        {
+            
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Id
+                        </th>
+                        <th>
+                            Voornaam
+                        </th>
+                        <th>
+                            Familienaam
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var abonnement in Model.Abonnementen)
+                    {
+                        <tr>
+                            <td>
+                                @abonnement.Id
+                            </td>
+                            <td>
+                                @abonnement.Voornaam
+                            </td>
+                            <td>
+                                @abonnement.Familienaam
+                            </td>
+                            <td>
+                                @Html.ActionLink("Annuleer", "Annuleer", new { id = abonnement.Id })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        } else
+        {
+            <h3>Je hebt nog geen abbonementen gekocht!</h3>
+        }
+    }
+} else
+{
+    <h5>Log alstublieft in voor je aankoopgeschiedenis kan zien!</h5>
+    <button class="btn btn-primary">
+        <a class="text-white" asp-area="Identity" asp-page="/Account/Register">Register</a>
+    </button>
+    <button class="btn btn-primary">
+        <a class="text-white" asp-area="Identity" asp-page="/Account/Login">Login</a>
+    </button>
+}
+
+

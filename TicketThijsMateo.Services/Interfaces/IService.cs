@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TicketThijsMateo.Domains.Entities;
 
 namespace TicketThijsMateo.Services.Interfaces
 {
@@ -21,7 +22,9 @@ namespace TicketThijsMateo.Services.Interfaces
         Task<IEnumerable<T>?> GetHotelsNearStadium(string stadiumName);
 
         Task<int> GetLastZetelNummer(int Id);
+        Task<IEnumerable<T>?> GetTicketsByUserID(string Id);
 
+        Task<T?> FindZitplaatsByIdAsync(int Id);
     }
 
 

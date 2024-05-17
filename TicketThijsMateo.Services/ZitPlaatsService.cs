@@ -26,7 +26,7 @@ namespace TicketThijsMateo.Services
 
         public Task DeleteAsync(Zitplaatsen entity)
         {
-            throw new NotImplementedException();
+            return _zitPlaatsDAO.DeleteAsync(entity);
         }
 
         public async Task<Zitplaatsen?> FindByIdAsync(int Id)
@@ -62,6 +62,16 @@ namespace TicketThijsMateo.Services
         public async Task<int> GetLastZetelNummer(int Id)
         {
             return await _zitPlaatsDAO.GetLastZetelNummer(Id);
+        }
+
+        public async Task<IEnumerable<Zitplaatsen>?> GetTicketsByUserID(string Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<Zitplaatsen?> FindZitplaatsByIdAsync(int Id)
+        {
+            return await _zitPlaatsDAO.FindZitplaatsByIdAsync(Id);
         }
     }
 }

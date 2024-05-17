@@ -33,9 +33,19 @@ namespace TicketThijsMateo.Repositories
             }
         }
 
-        public Task DeleteAsync(Zitplaatsen entity)
+        public async Task DeleteAsync(Zitplaatsen entity)
         {
-            throw new NotImplementedException();
+            _ticketDBContext.Entry(entity).State = EntityState.Deleted;
+
+            try
+            {
+                await _ticketDBContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
         }
 
         public async Task<Zitplaatsen?> FindByIdAsync(int Id)
@@ -43,6 +53,21 @@ namespace TicketThijsMateo.Repositories
             try
             {
                 return await _ticketDBContext.Zitplaatsens.Where(b => b.SoortplaatsId == Id)
+                    .FirstOrDefaultAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("error in DAO");
+                throw;
+
+            }
+        }
+
+        public async Task<Zitplaatsen?> FindZitplaatsByIdAsync(int Id)
+        {
+            try
+            {
+                return await _ticketDBContext.Zitplaatsens.Where(b => b.Id == Id)
                     .FirstOrDefaultAsync();
             }
             catch (Exception ex)
@@ -93,6 +118,11 @@ namespace TicketThijsMateo.Repositories
             {
                 throw new Exception($"Error retrieving the last ZetelNummer for SoortplaatsId {Id}", ex);
             }
+        }
+
+        public async Task<IEnumerable<Zitplaatsen>?> GetTicketsByUserID(string Id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -117,6 +117,7 @@ namespace TicketThijsMateo.Controllers
 
                         var ticketEntity = _mapper.Map<Ticket>(ticketVM);
                         ticketEntity.UserId = currentUser.Id;
+                        ticketEntity.AankoopDatum = DateTime.Now;
 
                         await _ticketService.AddAsync(ticketEntity);
 
