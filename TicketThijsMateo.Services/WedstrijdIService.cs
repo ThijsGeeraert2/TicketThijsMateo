@@ -84,5 +84,10 @@ namespace TicketThijsMateo.Services
         {
             throw new NotImplementedException();
         }
+
+        public Task<IEnumerable<Wedstrijden>?> GetAllByWedstrijdId(int Id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -17,19 +17,28 @@ namespace TicketThijsMateo.Controllers
 
         private IService<Club> clubService;
 
+        private IService<Ticket> ticketService;
+        private IService<Zitplaatsen> zitplaatsService;
+
+
         public IService<Soortplaatsen> soortplaatsService;
 
         private readonly IMapper _mapper;
 
-        
 
-        public WedstrijdController(IMapper mapper, IService<Wedstrijden> wService, IService<Club> cService, IService<Soortplaatsen> sService)
+
+        public WedstrijdController(IMapper mapper, IService<Wedstrijden> wService, IService<Club> cService,
+            IService<Soortplaatsen> sService, IService<Ticket> tService, IService<Zitplaatsen> zService
+            )
         {
             _mapper = mapper;
             wedstrijdService = wService;
             clubService = cService;
             soortplaatsService = sService;
-     
+            ticketService = tService;
+            zitplaatsService = zService;
+
+
         }
 
         public async Task<IActionResult> Index()  // add using System.Threading.Tasks;
@@ -73,6 +82,30 @@ namespace TicketThijsMateo.Controllers
             {
 
                 var soortplaats = await soortplaatsService.FindByIdAsync(ticketCreateVM.Soortplaatsnr);
+
+                var ticketsVoorWedstrijd = await ticketService.GetAllByWedstrijdId(ticketCreateVM.wedstrijdId);
+
+                var aantalZitjesInSoortplaats = 0;
+                foreach (var ticket in ticketsVoorWedstrijd)
+                {
+                    var zitplaats = await zitplaatsService.FindZitplaatsByIdAsync((int)ticket.ZitplaatsId);
+                    if (zitplaats != null)
+                    {
+                        if (zitplaats.SoortplaatsId == ticketCreateVM.Soortplaatsnr)
+                        {
+                            aantalZitjesInSoortplaats++;
+                        }
+                    }
+                 
+                }
+
+
+                if (aantalZitjesInSoortplaats >= soortplaats.Capaciteit)
+                {
+                    return NotFound("Soortplaats is uitverkocht");
+                }
+
+
                 TicketVM item = new TicketVM
                 {
                     Betaald = false,

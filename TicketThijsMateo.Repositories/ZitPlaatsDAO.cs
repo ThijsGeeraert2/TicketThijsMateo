@@ -124,5 +124,25 @@ namespace TicketThijsMateo.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public Task<IEnumerable<Zitplaatsen>?> GetAllByWedstrijdId(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<Zitplaatsen?> FindByZitplaatsIdAsync(int Id)
+        {
+            try
+            {
+                return await _ticketDBContext.Zitplaatsens.Where(b => b.Id == Id)
+                    .FirstOrDefaultAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("error in DAO");
+                throw;
+
+            }
+        }
     }
 }

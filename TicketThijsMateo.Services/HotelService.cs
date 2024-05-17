@@ -75,5 +75,10 @@ namespace TicketThijsMateo.Services
         {
             throw new NotImplementedException();
         }
+
+        public Task<IEnumerable<Hotel>?> GetAllByWedstrijdId(int Id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

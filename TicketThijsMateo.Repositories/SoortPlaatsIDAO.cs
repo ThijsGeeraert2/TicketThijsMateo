@@ -93,5 +93,10 @@ namespace TicketThijsMateo.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public Task<IEnumerable<Soortplaatsen>?> GetAllByWedstrijdId(int Id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

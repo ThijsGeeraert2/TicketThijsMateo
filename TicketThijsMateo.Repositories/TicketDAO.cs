@@ -77,6 +77,22 @@ namespace TicketThijsMateo.Repositories
             throw new NotImplementedException();
         }
 
+        public async Task<IEnumerable<Ticket>?> GetAllByWedstrijdId(int Id)
+        {
+            try
+            {
+                return await dbContext.Tickets
+                    .Where(b => b.WedstrijdId == Id)
+                    .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("error in DAO");
+                throw;
+
+            }
+        }
+
         public Task UpdateAsync(Ticket entity)
         {
             throw new NotImplementedException();
