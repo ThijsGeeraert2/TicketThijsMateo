@@ -94,5 +94,10 @@ namespace TicketThijsMateo.Repositories
                 throw new Exception($"Error retrieving the last ZetelNummer for SoortplaatsId {Id}", ex);
             }
         }
+
+        public Task<IEnumerable<Zitplaatsen>?> GetAllByWedstrijdId(int Id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

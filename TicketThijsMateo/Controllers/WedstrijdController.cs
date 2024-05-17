@@ -17,19 +17,23 @@ namespace TicketThijsMateo.Controllers
 
         private IService<Club> clubService;
 
+        private IService<Ticket> ticketService;
+
         public IService<Soortplaatsen> soortplaatsService;
 
         private readonly IMapper _mapper;
 
         
 
-        public WedstrijdController(IMapper mapper, IService<Wedstrijden> wService, IService<Club> cService, IService<Soortplaatsen> sService)
+        public WedstrijdController(IMapper mapper, IService<Wedstrijden> wService, IService<Club> cService, IService<Soortplaatsen> sService, IService<Ticket> tService)
         {
             _mapper = mapper;
             wedstrijdService = wService;
             clubService = cService;
             soortplaatsService = sService;
-     
+            ticketService = tService;
+
+
         }
 
         public async Task<IActionResult> Index()  // add using System.Threading.Tasks;
@@ -72,7 +76,13 @@ namespace TicketThijsMateo.Controllers
             if (ticketCreateVM != null)
             {
 
+
                 var soortplaats = await soortplaatsService.FindByIdAsync(ticketCreateVM.Soortplaatsnr);
+
+                var ticketsVoorWedstrijd = await ticketService.GetAllByWedstrijdId(ticketCreateVM.wedstrijdId);
+
+            
+
                 TicketVM item = new TicketVM
                 {
                     Betaald = false,

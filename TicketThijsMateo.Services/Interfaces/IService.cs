@@ -20,6 +20,9 @@ namespace TicketThijsMateo.Services.Interfaces
 
         Task<IEnumerable<T>?> GetHotelsNearStadium(string stadiumName);
 
+        Task<IEnumerable<T>?> GetAllByWedstrijdId(int Id);
+
+
         Task<int> GetLastZetelNummer(int Id);
 
     }
