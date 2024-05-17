@@ -33,6 +33,9 @@ namespace TicketThijsMateo.ViewModels
     public class SubscriptionVM
     {
         public DateTime? AankoopDatum { get; set; }
+        public DateTime? StartDatum { get; set; }
+        public DateTime? EindDatum { get; set; }
+
 
         public int ClubId { get; set; }
 
