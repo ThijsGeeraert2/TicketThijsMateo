@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TicketThijsMateo.Domains.Entities;
 
 namespace TicketThijsMateo.Repositories.Interfaces
 {
@@ -21,7 +22,9 @@ namespace TicketThijsMateo.Repositories.Interfaces
         Task <T?> FindByZitplaatsIdAsync(int Id);
      
         Task<int> GetLastZetelNummer(int Id);
-       
+        Task<IEnumerable<T>?> GetTicketsByUserID(string Id);
+        Task<T?> FindZitplaatsByIdAsync(int Id);
+
 
     }
 

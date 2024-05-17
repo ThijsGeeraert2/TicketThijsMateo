@@ -87,6 +87,7 @@ namespace TicketThijsMateo.Repositories
             throw new NotImplementedException();
         }
 
+
         public async Task<IEnumerable<Ticket>?> GetAllByWedstrijdId(int Id)
         {
             try
@@ -107,5 +108,21 @@ namespace TicketThijsMateo.Repositories
         {
             throw new NotImplementedException();
         }
+        public async Task<IEnumerable<Ticket>?> GetTicketsByUserID(string Id)
+        {
+            try
+            {
+                var tickets = await dbContext.Tickets
+                    .Where(b => b.UserId == Id)
+                    .ToListAsync();
+
+                return tickets;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error retrieving tickets for UserID {Id}", ex);
+            }
+        }
+
     }
 }

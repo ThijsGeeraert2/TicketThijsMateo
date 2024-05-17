@@ -66,11 +66,15 @@ namespace TicketThijsMateo.Services
         }
 
         public Task<IEnumerable<Stadium>?> GetAllByWedstrijdId(int Id)
+          {
+            throw new NotImplementedException();
+        }
+        public async Task<IEnumerable<Stadium>?> GetTicketsByUserID(string Id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Stadium?> FindByZitplaatsIdAsync(int Id)
+        public async Task<Stadium?> FindZitplaatsByIdAsync(int Id)
         {
             throw new NotImplementedException();
         }

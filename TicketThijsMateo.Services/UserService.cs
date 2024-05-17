@@ -64,11 +64,16 @@ namespace TicketThijsMateo.Services
         }
 
         public Task<IEnumerable<AspNetUser>?> GetAllByWedstrijdId(int Id)
+         {
+            throw new NotImplementedException();
+        }
+        public async Task<IEnumerable<AspNetUser>?> GetTicketsByUserID(string Id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<AspNetUser?> FindByZitplaatsIdAsync(int Id)
+
+        public async Task<AspNetUser?> FindZitplaatsByIdAsync(int Id)
         {
             throw new NotImplementedException();
         }

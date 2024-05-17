@@ -33,9 +33,19 @@ namespace TicketThijsMateo.Repositories
             }
         }
 
-        public Task DeleteAsync(Zitplaatsen entity)
+        public async Task DeleteAsync(Zitplaatsen entity)
         {
-            throw new NotImplementedException();
+            _ticketDBContext.Entry(entity).State = EntityState.Deleted;
+
+            try
+            {
+                await _ticketDBContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
         }
 
         public async Task<Zitplaatsen?> FindByIdAsync(int Id)
@@ -54,6 +64,7 @@ namespace TicketThijsMateo.Repositories
         }
 
         public async Task<Zitplaatsen?> FindByZitplaatsIdAsync(int Id)
+
         {
             try
             {
@@ -111,6 +122,10 @@ namespace TicketThijsMateo.Repositories
         }
 
         public Task<IEnumerable<Zitplaatsen>?> GetAllByWedstrijdId(int Id)
+        {
+            throw new NotImplementedException();
+        }
+        public async Task<IEnumerable<Zitplaatsen>?> GetTicketsByUserID(string Id)
         {
             throw new NotImplementedException();
         }
