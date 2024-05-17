@@ -17,6 +17,7 @@ namespace TicketThijsMateo.Controllers
     {
         private IService<Ticket> _ticketService;
         private IService<Zitplaatsen> _zitPlaatsService;
+        private IService<Soortplaatsen> _soortPlaatsenService;
         private readonly IMapper _mapper;
 
         private readonly IEmailSend _emailSend;
@@ -25,11 +26,12 @@ namespace TicketThijsMateo.Controllers
 
         private readonly UserManager<IdentityUser> _userManager;
 
-        public ShoppingCartController(IMapper mapper, IService<Ticket> ticketService, IService<Zitplaatsen> zitplaatsService, IEmailSend emailSend, ICreatePDF createPDF, IWebHostEnvironment hostingEnvironment, UserManager<IdentityUser> userManager)
+        public ShoppingCartController(IMapper mapper, IService<Ticket> ticketService, IService<Zitplaatsen> zitplaatsService, IService<Soortplaatsen> soortPlaatsService, IEmailSend emailSend, ICreatePDF createPDF, IWebHostEnvironment hostingEnvironment, UserManager<IdentityUser> userManager)
         {
             _mapper = mapper;
             _ticketService = ticketService;
             _zitPlaatsService = zitplaatsService;
+            _soortPlaatsenService = soortPlaatsService;
 
             _emailSend = emailSend;
             _createPDF = createPDF;
@@ -61,7 +63,7 @@ namespace TicketThijsMateo.Controllers
 
             //try
             //{
-                var ticketsVM = cartList.Ticket;
+                List<TicketVM> ticketsVM = cartList.Ticket;
 
                 foreach (var ticketVM in ticketsVM)
                 {
@@ -91,11 +93,13 @@ namespace TicketThijsMateo.Controllers
 
                     var lastSeatNumber = await _zitPlaatsService.GetLastZetelNummer();
                     int newSeatNumber = lastSeatNumber + 1;
+                    var plaats = _soortPlaatsenService.FindByIdAsync(ticketVM.SoortplaatsNr);
 
                     var newZitplaats = new ZitPlaatsVM
                     {
                         RijNummer = 1,
                         ZetelNummer = newSeatNumber,
+                        Soortplaats = plaats
                     };
 
                     var zitplaats = _mapper.Map<Zitplaatsen>(newZitplaats);

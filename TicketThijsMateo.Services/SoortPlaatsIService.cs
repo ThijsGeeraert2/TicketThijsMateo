@@ -31,7 +31,7 @@ namespace TicketThijsMateo.Services
 
         public Task<Soortplaatsen?> FindByIdAsync(int Id)
         {
-            throw new NotImplementedException();
+            return _soortplaatsDAO.FindByIdAsync(Id);
 
         }
 

@@ -18,7 +18,7 @@ namespace TicketThijsMateo.ViewModels
 
         public bool Betaald { get; set; }
         public int PersoonId { get; set; }
-
+        public int SoortplaatsNr { get; set; }
         public Zitplaatsen Zitplaats { get; set; }
         public Soortplaatsen Soortplaats { get; set; }
 
