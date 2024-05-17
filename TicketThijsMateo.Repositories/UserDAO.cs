@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TicketThijsMateo.Domains.Data;
 using TicketThijsMateo.Domains.Entities;
 using TicketThijsMateo.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace TicketThijsMateo.Repositories
 {
